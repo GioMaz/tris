@@ -11,18 +11,16 @@ namespace tris
 
         public void AggiungiFiglio(Nodo unNodo)
         {
-            // // controlla se un nodo con la stessa configurazione esiste già
-            // // PrintConfigurazione(CercaConfigurazione(unaConfigurazione).Configurazione);
-            // // Console.WriteLine(CercaConfigurazione(unNodo.Configurazione).Equals(new Nodo()));
-            // // PrintConfigurazione(unNodo.Configurazione);
-            // if (CercaConfigurazione(unNodo.Configurazione).Equals(new Nodo()))
-            // {
-            //     // se non esiste aggiunge un nuovo nodo con quella configurazione
-            //     // Console.WriteLine("AGGIUNGENDO IL NODO...\n");
-            //     ListaFigli.Add(unNodo);
-            // }
-            Console.WriteLine(CercaConfigurazione(unNodo.Configurazione).Equals(new Nodo()));
-            ListaFigli.Add(unNodo);
+            // controlla se un nodo con la stessa configurazione esiste già
+            // PrintConfigurazione(CercaConfigurazione(unaConfigurazione).Configurazione);
+            // Console.WriteLine(CercaConfigurazione(unNodo.Configurazione).Equals(new Nodo()));
+            // PrintConfigurazione(unNodo.Configurazione);
+            if (CercaConfigurazione(unNodo.Configurazione).Equals(new Nodo()))
+            {
+                // se non esiste aggiunge un nuovo nodo con quella configurazione
+                // Console.WriteLine("AGGIUNGENDO IL NODO...\n");
+                ListaFigli.Add(unNodo);
+            }
         }
 
         // cerca una configurazione in maniera ricorsiva
@@ -40,10 +38,6 @@ namespace tris
                     n.CercaConfigurazione(Configurazione);
                 }
             }
-            // if (!nodoTrovato.Equals(new Nodo()))
-            // {
-            //     Console.WriteLine("ATTENZIONE: NODO ESISTENTE\n");
-            // }
             return nodoTrovato;
         }
 
@@ -91,7 +85,7 @@ namespace tris
 
         public void PrintFigli()
         {
-            Console.WriteLine("FIGLI");
+            Console.WriteLine("FIGLI: ");
             for (int i = 0; i < 3; i++)
             {
                 foreach (Nodo n in ListaFigli)
@@ -103,6 +97,10 @@ namespace tris
                     Console.Write("   ");
                 }
                 Console.WriteLine();
+            }
+            foreach (Nodo n in ListaFigli)
+            {
+                n.PrintFigli();
             }
         }
 

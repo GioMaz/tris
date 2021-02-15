@@ -7,24 +7,18 @@ namespace tris
     {
         public int Vincitore { get; set; }
         public List<int[,]> Cronologia { get; set; }
-        
+
         public void AggiungiTutteCronologie(Nodo radice)
         {
-            Aggiungi
-            // for (int i = 0; i < 4; i ++)
-            // {
-
-            // }
-        }
-
-        public void AggiungiCronologia(Nodo radice)
-        {
-            Nodo NodoPadre = radice;
-            foreach (int[,] Conf in Cronologia)
+            for (int i = 0; i < 4; i++)
             {
-                Nodo NodoFiglio = new Nodo() {Punteggio = Vincitore, Configurazione = Conf};
-                NodoPadre.AggiungiFiglio(NodoFiglio);
-                NodoPadre = NodoFiglio;
+                Nodo NodoPadre = radice;
+                foreach (int[,] Conf in Cronologia)
+                {
+                    Nodo NodoFiglio = new Nodo() {Punteggio = Vincitore, Configurazione = Conf};
+                    NodoPadre.AggiungiFiglio(NodoFiglio);
+                    NodoPadre = radice.CercaConfigurazione(Conf);
+                }
             }
         }
 
@@ -50,11 +44,25 @@ namespace tris
             Cronologia = NuovaCronologia;
         }
 
-        public void PrintCronologia(List<int[,]> cron)
+        public void PrintConfigurazione(int [,] tab)
         {
-            foreach (int [,] c in cron)
+            for (int i = 0; i < tab.GetLength(0); i++)
             {
-                new Tris().PrintTabella(c);
+                for (int j = 0; j < tab.GetLength(1); j++)
+                {
+                    Console.Write(tab[i,j]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+
+        public void PrintCronologia(List<int[,]> Cron)
+        {
+            foreach (int [,] c in Cron)
+            {
+                PrintConfigurazione(c);
             }
         }
     }

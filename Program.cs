@@ -16,9 +16,10 @@ namespace tris
             Tris tris;
 
             tris = new Tris();
-            tris.GiocaPartita(false);
-            Partita p = new Partita() {Vincitore = tris.DimmiVincitore(), Cronologia = tris.Cronologia};
-
+            tris.GiocaPartita(radice, false);
+            Partita p = tris.CreaPartita();
+            p.AggiungiTutteCronologie(radice);
+            radice.PrintAlbero();
             // tris = new Tris();
             // tris.GiocaPartita(true, radice);
         }
@@ -29,7 +30,7 @@ namespace tris
 // p.Vincitore
 // p.Cronologia
 //
-// p.AggiungiCronologieRuotate
+// p.AggiungiTutteCronologie
 // p.AggiungiCronologia
 // p.RuotaCronologia
 

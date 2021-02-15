@@ -15,7 +15,7 @@ namespace tris
             });
         }
 
-        public void GiocaPartita(bool intelligente)
+        public void GiocaPartita(Nodo radice, bool intelligente)
         {
             int Turno = 0;
             while (DimmiVincitore() == 0)
@@ -23,13 +23,13 @@ namespace tris
                 int giocatore = Turno%2 + 1;
                 if (giocatore == 1)
                 {
-                    MossaStupida(giocatore);
+                    MossaGiocatore(giocatore);
                 }
                 else
                 {
                     if (intelligente)
                     {
-                        MossaStupida(giocatore);
+                        MossaIntelligente(radice, giocatore);
                     }
                     else
                     {
@@ -37,6 +37,24 @@ namespace tris
                     }
                 }
                 Turno ++;
+            }
+        }
+
+        public void MossaIntelligente(Nodo radice, int giocatore)
+        {
+            int [,] Tabella = Cronologia[Cronologia.Count - 1];
+            bool Trovato = false;
+            while (!Trovato)
+            {
+                int NScelto = Convert.ToInt32(Console.ReadLine()) - 1;
+                if (Tabella[NScelto/3, NScelto%3] == 0)
+                {
+                    int[,] NuovaConfigurazione = Tabella.Clone() as int[,];
+                    NuovaConfigurazione[NScelto/3, NScelto%3] = giocatore;
+                    Cronologia.Add(NuovaConfigurazione);
+                    Trovato = true;
+                    PrintTabella(NuovaConfigurazione);
+                }
             }
         }
 
@@ -54,16 +72,32 @@ namespace tris
                     NuovaConfigurazione[NRand/3, NRand%3] = giocatore;
                     Cronologia.Add(NuovaConfigurazione);
                     Trovato = true;
+                    PrintTabella(NuovaConfigurazione);
                 }
             }
         }
 
-        public void MossaGiocatore()
+        public void MossaGiocatore(int giocatore)
         {
+            int [,] Tabella = Cronologia[Cronologia.Count - 1];
+            bool Trovato = false;
+            while (!Trovato)
+            {
+                int NScelto = Convert.ToInt32(Console.ReadLine()) - 1;
+                if (Tabella[NScelto/3, NScelto%3] == 0)
+                {
+                    int[,] NuovaConfigurazione = Tabella.Clone() as int[,];
+                    NuovaConfigurazione[NScelto/3, NScelto%3] = giocatore;
+                    Cronologia.Add(NuovaConfigurazione);
+                    Trovato = true;
+                    PrintTabella(NuovaConfigurazione);
+                }
+            }
         }
 
-        public void MossaIntelligente(Nodo radice)
+        public Partita CreaPartita()
         {
+            return new Partita() {Vincitore = DimmiVincitore(), Cronologia = Cronologia};
         }
 
         // serve a stabilire chi ha vinto
