@@ -13,12 +13,13 @@ namespace tris
             for (int i = 0; i < 4; i++)
             {
                 Nodo NodoPadre = radice;
-                foreach (int[,] Conf in Cronologia)
+                for (int j = 1; j < Cronologia.Count; j ++)
                 {
-                    Nodo NodoFiglio = new Nodo() {Punteggio = Vincitore, Configurazione = Conf};
+                    Nodo NodoFiglio = new Nodo() {Punteggio = Vincitore, Configurazione = Cronologia[i]};
                     NodoPadre.AggiungiFiglio(NodoFiglio);
-                    NodoPadre = radice.CercaConfigurazione(Conf);
+                    NodoPadre = NodoFiglio;
                 }
+                RuotaCronologia();
             }
         }
 
