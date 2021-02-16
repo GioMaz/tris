@@ -43,18 +43,14 @@ namespace tris
         public void MossaIntelligente(Nodo radice, int giocatore)
         {
             int [,] Tabella = Cronologia[Cronologia.Count - 1];
-            bool Trovato = false;
-            while (!Trovato)
+            Nodo ConfigurazioneSimile = radice.CercaConfigurazione(Tabella);
+            if (!ConfigurazioneSimile.Equals(new Nodo()))
             {
-                int NScelto = Convert.ToInt32(Console.ReadLine()) - 1;
-                if (Tabella[NScelto/3, NScelto%3] == 0)
-                {
-                    int[,] NuovaConfigurazione = Tabella.Clone() as int[,];
-                    NuovaConfigurazione[NScelto/3, NScelto%3] = giocatore;
-                    Cronologia.Add(NuovaConfigurazione);
-                    Trovato = true;
-                    PrintTabella(NuovaConfigurazione);
-                }
+                Console.WriteLine("TROVATOOOO");
+            }
+            else
+            {
+                MossaStupida(giocatore);
             }
         }
 
@@ -95,7 +91,7 @@ namespace tris
             }
         }
 
-        public Partita CreaPartita()
+        public Partita PassaAPartita()
         {
             return new Partita() {Vincitore = DimmiVincitore(), Cronologia = Cronologia};
         }

@@ -69,6 +69,11 @@ namespace tris
             //return altroNodo.Configurazione == this.Configurazione;
         }
 
+        public override int GetHashCode()
+        {
+            return Configurazione.GetHashCode();
+        }
+
         public void PrintConfigurazione(int [,] tab)
         {
             for (int i = 0; i < tab.GetLength(0); i++)
@@ -106,10 +111,11 @@ namespace tris
 
         public void PrintAlbero()
         {
+            Console.Write("PUNTEGGIO: ");
+            Console.WriteLine(Punteggio);
+            PrintConfigurazione(Configurazione);
             foreach (Nodo n in ListaFigli)
             {
-                Console.WriteLine("RAMO");
-                PrintConfigurazione(n.Configurazione);
                 n.PrintAlbero();
                 Console.WriteLine();
             }

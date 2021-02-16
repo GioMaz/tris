@@ -7,21 +7,24 @@ namespace tris
     { 
         public static void Main(string[] args)
         {
-            Nodo radice = new Nodo() {Punteggio = 1, Configurazione = new int[,] {
+            Console.WriteLine("INIZIO PROGRAMMA");
+            Nodo radice = new Nodo() {Punteggio = 0, Configurazione = new int[,] {
                 {0,0,0},
                 {0,0,0},
                 {0,0,0}
             }};
 
-            Tris tris;
-
-            tris = new Tris();
+            Tris tris = new Tris();
             tris.GiocaPartita(radice, false);
-            Partita p = tris.CreaPartita();
-            p.AggiungiTutteCronologie(radice);
+
+            Partita p = tris.PassaAPartita();
+            p.AggiungiCronologieRuotate(radice);
+
             radice.PrintAlbero();
+
+            // Console.WriteLine("DIVENTO INTELLIGENTE");
             // tris = new Tris();
-            // tris.GiocaPartita(true, radice);
+            // tris.GiocaPartita(radice, true);
         }
     }
 }
@@ -34,20 +37,22 @@ namespace tris
 // p.AggiungiCronologia
 // p.RuotaCronologia
 
-// class Tris
-// t.Tabella;           => int[,]
-// t.CronologiaMosse;   => List<int[,]>
 
-// t.FaiPartita();
-// t.DimmiVincitore();  => int
+// class Tris
+// t.Tabella;                           => int[,]
+// t.CronologiaMosse;                   => List<int[,]>
+
+// t.GiocaPartita();
+// t.DimmiVincitore();                  => int
+// t.PassaAPartita();                   => Partita
 // t.PrintTabella(int[,]);
 // t.PrintCronologia();
 
 
 // class Nodo
-// n.Punteggio          => int
-// n.Configurazione     => int[,]
-// n.ListaFigli         => List<Nodo>
+// n.Punteggio                          => int
+// n.Configurazione                     => int[,]
+// n.ListaFigli                         => List<Nodo>
 
 // n.AggiungiFiglio(Nodo);
 // n.CercaConfigurazione(int[,]);       => Nodo

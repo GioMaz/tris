@@ -8,14 +8,16 @@ namespace tris
         public int Vincitore { get; set; }
         public List<int[,]> Cronologia { get; set; }
 
-        public void AggiungiTutteCronologie(Nodo radice)
+        // aggiunge cronologia a nodo (radice)
+        // ruota le configurazioni per imparare più in fretta
+        public void AggiungiCronologieRuotate(Nodo radice)
         {
             for (int i = 0; i < 4; i++)
             {
                 Nodo NodoPadre = radice;
                 for (int j = 1; j < Cronologia.Count; j ++)
                 {
-                    Nodo NodoFiglio = new Nodo() {Punteggio = Vincitore, Configurazione = Cronologia[j]};
+                    Nodo NodoFiglio = new Nodo() {Punteggio = DimmiPunteggio(), Configurazione = Cronologia[j]};
                     NodoPadre.AggiungiFiglio(NodoFiglio);
                     NodoPadre = NodoFiglio;
                 }
@@ -23,6 +25,7 @@ namespace tris
             }
         }
 
+        // ruota tutte le configurazioni nella cronologia
         public void RuotaCronologia()
         {
             List<int[,]> NuovaCronologia = new List<int[,]> {};
@@ -43,6 +46,21 @@ namespace tris
                 NuovaCronologia.Add(NuovaMatrice);
             }
             Cronologia = NuovaCronologia;
+        }
+
+        public int DimmiPunteggio()
+        {
+            switch (Vincitore)
+            {
+                case 1:
+                    return -1;
+                case 2:
+                    return 1;
+                case -1:
+                    return 0;
+                default:
+                    return 0;
+            }
         }
 
         public void PrintConfigurazione(int [,] tab)
