@@ -106,9 +106,9 @@ namespace tris
 
         public void PrintAlbero()
         {
-            Console.WriteLine("RAMO");
             foreach (Nodo n in ListaFigli)
             {
+                Console.WriteLine("RAMO");
                 PrintConfigurazione(n.Configurazione);
                 n.PrintAlbero();
                 Console.WriteLine();

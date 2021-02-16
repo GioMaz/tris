@@ -15,7 +15,7 @@ namespace tris
                 Nodo NodoPadre = radice;
                 for (int j = 1; j < Cronologia.Count; j ++)
                 {
-                    Nodo NodoFiglio = new Nodo() {Punteggio = Vincitore, Configurazione = Cronologia[i]};
+                    Nodo NodoFiglio = new Nodo() {Punteggio = Vincitore, Configurazione = Cronologia[j]};
                     NodoPadre.AggiungiFiglio(NodoFiglio);
                     NodoPadre = NodoFiglio;
                 }
