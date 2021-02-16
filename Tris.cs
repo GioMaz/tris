@@ -15,7 +15,7 @@ namespace tris
             });
         }
 
-        public void GiocaPartita(Nodo radice, bool intelligente)
+        public void GiocaPartita(Nodo radice, bool intelligente, bool giocabile)
         {
             int Turno = 0;
             while (DimmiVincitore() == 0)
@@ -23,7 +23,14 @@ namespace tris
                 int giocatore = Turno%2 + 1;
                 if (giocatore == 1)
                 {
-                    MossaGiocatore(giocatore);
+                    if (giocabile)
+                    {
+                        MossaGiocatore(giocatore);
+                    }
+                    else
+                    {
+                        MossaStupida(giocatore);
+                    }
                 }
                 else
                 {
@@ -44,13 +51,20 @@ namespace tris
         {
             int [,] Tabella = Cronologia[Cronologia.Count - 1];
             Nodo ConfigurazioneSimile = radice.CercaConfigurazione(Tabella);
+            bool Trovato = false;
             if (!ConfigurazioneSimile.Equals(new Nodo()))
             {
-                Console.WriteLine("TROVATOOOO");
+                Console.WriteLine("TROVATO");
+                int[,] NuovaConfigurazione = ConfigurazioneSimile.ListaFigli[0].Configurazione.Clone() as int[,];
+                Cronologia.Add(NuovaConfigurazione);
+                Trovato = true;
+                PrintTabella(Cronologia[Cronologia.Count - 1]);
             }
             else
             {
+                Console.WriteLine("NON TROVATO");
                 MossaStupida(giocatore);
+                PrintTabella(Cronologia[Cronologia.Count - 1]);
             }
         }
 
@@ -68,7 +82,7 @@ namespace tris
                     NuovaConfigurazione[NRand/3, NRand%3] = giocatore;
                     Cronologia.Add(NuovaConfigurazione);
                     Trovato = true;
-                    PrintTabella(NuovaConfigurazione);
+                    // PrintTabella(NuovaConfigurazione);
                 }
             }
         }

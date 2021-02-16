@@ -17,7 +17,12 @@ namespace tris
                 Nodo NodoPadre = radice;
                 for (int j = 1; j < Cronologia.Count; j ++)
                 {
-                    Nodo NodoFiglio = new Nodo() {Punteggio = DimmiPunteggio(), Configurazione = Cronologia[j]};
+                    Nodo NodoFiglio = radice.CercaConfigurazione(Cronologia[j]);
+                    if (NodoFiglio.Equals(new Nodo()))
+                    {
+                        NodoFiglio.Punteggio = DimmiPunteggio();
+                        NodoFiglio.Configurazione = Cronologia[j];
+                    }
                     NodoPadre.AggiungiFiglio(NodoFiglio);
                     NodoPadre = NodoFiglio;
                 }

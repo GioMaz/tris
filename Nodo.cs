@@ -26,19 +26,17 @@ namespace tris
         // cerca una configurazione in maniera ricorsiva
         public Nodo CercaConfigurazione(int[,] unaConfigurazione)
         {
-            Nodo nodoTrovato = new Nodo();
+            if (this.Equals(new Nodo() {Punteggio = this.Punteggio, Configurazione = unaConfigurazione}))
+            {
+                // PrintConfigurazione(this.Configurazione);
+                // Console.WriteLine("THIS CONFIGURAZIONE");
+                return this;
+            }
             foreach (Nodo n in ListaFigli)
             {
-                if (n.Equals(new Nodo() {Punteggio = n.Punteggio, Configurazione = unaConfigurazione}))
-                {
-                    nodoTrovato = n;
-                }
-                else
-                {
-                    n.CercaConfigurazione(Configurazione);
-                }
+                return n.CercaConfigurazione(unaConfigurazione);
             }
-            return nodoTrovato;
+            return new Nodo();
         }
 
         // override del metodo equals
