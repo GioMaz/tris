@@ -95,7 +95,7 @@ namespace tris
             while (!Trovato)
             {
                 int NScelto = Convert.ToInt32(Console.ReadLine()) - 1;
-                if (Tabella[NScelto/3, NScelto%3] == 0)
+                if (NScelto < 9 && -1 < NScelto && Tabella[NScelto/3, NScelto%3] == 0)
                 {
                     int[,] NuovaConfigurazione = Tabella.Clone() as int[,];
                     NuovaConfigurazione[NScelto/3, NScelto%3] = giocatore;

@@ -22,7 +22,7 @@ namespace tris
             // APPRENDIMENTO AUTOMATICO
             Tris tris = new Tris();
             Console.WriteLine("CALCOLO MOSSE...");
-            for (int i = 0; i < 100; i ++)
+            for (int i = 0; i < 200; i ++)
             {
                 tris.GiocaPartita(radice, false);
                 tris.PassaAPartita().AggiungiCronologieRuotate(radice);
@@ -31,9 +31,12 @@ namespace tris
 
             // radice.PrintFigli();
             
-            Console.WriteLine("INIZIO PARTITA");
-            tris = new Tris();
-            tris.GiocaPartita(radice, true);
+            while (true)
+            {
+                Console.WriteLine("INIZIO PARTITA");
+                tris = new Tris();
+                tris.GiocaPartita(radice, true);
+            }
             // Console.WriteLine("INIZIO GIOCO...");
             // 
             // while (true)
