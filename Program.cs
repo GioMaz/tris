@@ -12,37 +12,35 @@ namespace tris
                 {0,0,0},
                 {0,0,0}
             }};
+            int[,] ConfProva = new int[,] {
+                {1,0,0},
+                {0,0,0},
+                {0,0,0}
+            };
 
-            Tris tris;
-            
+
+            // APPRENDIMENTO AUTOMATICO
+            Tris tris = new Tris();
             Console.WriteLine("CALCOLO MOSSE...");
-            for (int i = 0; i < 1; i ++)
+            for (int i = 0; i < 100; i ++)
             {
-                tris = new Tris();
-                tris.GiocaPartita(radice, true, true);
-
-                // Console.Write("CRONOLOGIA: ");
-                // Console.WriteLine(i + 1);
-                // tris.PrintCronologia();
-
+                tris.GiocaPartita(radice, false);
                 tris.PassaAPartita().AggiungiCronologieRuotate(radice);
-                // p.AggiungiCronologieRuotate(radice);
-            }
-
-            radice.PrintAlbero();
-            // radice.PrintFigli();
-
-            Console.WriteLine("INIZIO GIOCO...");
-            
-            while (true)
-            {
                 tris = new Tris();
-                tris.GiocaPartita(radice, true, true);
             }
 
-            // Console.WriteLine("DIVENTO INTELLIGENTE");
-            // tris = new Tris();
-            // tris.GiocaPartita(radice, true);
+            // radice.PrintFigli();
+            
+            Console.WriteLine("INIZIO PARTITA");
+            tris = new Tris();
+            tris.GiocaPartita(radice, true);
+            // Console.WriteLine("INIZIO GIOCO...");
+            // 
+            // while (true)
+            // {
+            //     tris = new Tris();
+            //     tris.GiocaPartita(radice, true, true);
+            // }
         }
     }
 }

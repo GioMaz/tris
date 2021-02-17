@@ -34,7 +34,11 @@ namespace tris
             }
             foreach (Nodo n in ListaFigli)
             {
-                return n.CercaConfigurazione(unaConfigurazione);
+                Nodo NodoTrovato = n.CercaConfigurazione(unaConfigurazione);
+                if (!NodoTrovato.Equals(new Nodo()))
+                {
+                    return NodoTrovato;
+                }
             }
             return new Nodo();
         }
