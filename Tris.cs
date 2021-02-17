@@ -46,6 +46,8 @@ namespace tris
                 }
                 Turno ++;
             }
+            Console.Write("VINCITORE: ");
+            Console.WriteLine(DimmiVincitore());
         }
 
         public void MossaIntelligente(Nodo radice, int giocatore)
@@ -55,10 +57,13 @@ namespace tris
             bool Trovato = false;
             if (!ConfigurazioneSimile.Equals(new Nodo()))
             {
-                Console.WriteLine("TROVATO");
-                int[,] NuovaConfigurazione = ConfigurazioneSimile.ListaFigli[0].Configurazione.Clone() as int[,];
+                Console.Write("PUNTEGGIO: ");
+                Console.WriteLine(ConfigurazioneSimile.DimmiFiglioVincente().Punteggio);
+
+                int[,] NuovaConfigurazione = ConfigurazioneSimile.DimmiFiglioVincente().Configurazione.Clone() as int[,];
                 Cronologia.Add(NuovaConfigurazione);
                 Trovato = true;
+
                 PrintTabella(Cronologia[Cronologia.Count - 1]);
             }
             else
@@ -101,6 +106,7 @@ namespace tris
                     NuovaConfigurazione[NScelto/3, NScelto%3] = giocatore;
                     Cronologia.Add(NuovaConfigurazione);
                     Trovato = true;
+
                     PrintTabella(NuovaConfigurazione);
                 }
             }
@@ -133,19 +139,19 @@ namespace tris
                 int giocatoreDia2 = Tabella[0, Tabella.GetLength(1) - 1];
                 for (int j = 0; j <= Tabella.GetLength(1) - 1; j++)
                 {
-                    if (Tabella[i, j] != giocatoreOri)
+                    if (Tabella[i, j] != giocatoreOri || Tabella[i, j] == 0)
                     {
                         ori = false;
                     }
-                    if (Tabella[j, i] != giocatoreVer)
+                    if (Tabella[j, i] != giocatoreVer || Tabella[j, i] == 0)
                     {
                         ver = false;
                     }
-                    if (Tabella[j, j] != giocatoreDia1)
+                    if (Tabella[j, j] != giocatoreDia1 || Tabella[j, j] == 0)
                     {
                         dia1 = false;
                     }
-                    if (Tabella[j, Tabella.GetLength(0) - 1 - j] != giocatoreDia2)
+                    if (Tabella[j, Tabella.GetLength(0) - 1 - j] != giocatoreDia2 || Tabella[j, Tabella.GetLength(0) - 1 - j] == 0)
                     {
                         dia2 = false;
                     }

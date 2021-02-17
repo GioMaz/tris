@@ -1,5 +1,6 @@
 using System;
-// using System.Collections.Generic;
+using System.Collections.Generic;
+using System.IO;
 
 namespace tris
 {
@@ -21,29 +22,29 @@ namespace tris
 
             // APPRENDIMENTO AUTOMATICO
             Tris tris = new Tris();
-            Console.WriteLine("CALCOLO MOSSE...");
-            for (int i = 0; i < 200; i ++)
+            
+            if (!File.Exists("radice"))
             {
-                tris.GiocaPartita(radice, false);
-                tris.PassaAPartita().AggiungiCronologieRuotate(radice);
-                tris = new Tris();
+                Console.WriteLine("CALCOLO MOSSE...");
+                for (int i = 0; i < 100; i ++)
+                {
+                    tris.GiocaPartita(radice, false);
+                    tris.PassaAPartita().AggiungiCronologieRuotate(radice);
+                    tris = new Tris();
+                }
+                radice.SalvaFigli();
+            }
+            else
+            {
+                radice.CaricaFigli();
+                while (true)
+                {
+                    Console.WriteLine("INIZIO PARTITA");
+                    tris = new Tris();
+                    tris.GiocaPartita(radice, true);
+                }
             }
 
-            // radice.PrintFigli();
-            
-            while (true)
-            {
-                Console.WriteLine("INIZIO PARTITA");
-                tris = new Tris();
-                tris.GiocaPartita(radice, true);
-            }
-            // Console.WriteLine("INIZIO GIOCO...");
-            // 
-            // while (true)
-            // {
-            //     tris = new Tris();
-            //     tris.GiocaPartita(radice, true, true);
-            // }
         }
     }
 }
