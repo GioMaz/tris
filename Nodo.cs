@@ -27,43 +27,26 @@ namespace tris
             }
         }
 
-        public List<Nodo> CercaConfigurazioni(int[,] unaConfigurazione, List<Nodo> ListaNodi)
-        {
-            if (this.Equals(new Nodo() {Punteggio = this.Punteggio, Configurazione = unaConfigurazione}))
-            {
-                ListaNodi.Add(this);
-                return ListaNodi;
-            }
-            List<Nodo> NuovaListaNodi = null;
-            foreach (Nodo n in ListaFigli)
-            {
-                NuovaListaNodi.AddRange(n.CercaConfigurazioni(unaConfigurazione, ListaNodi));
-                if (NuovaListaNodi != null)
-                {
-                    NuovaListaNodi.Add(n);
-                }
-            }
-            return NuovaListaNodi;
-        }
-
         // cerca una configurazione in maniera ricorsiva
         public Nodo CercaConfigurazione(int[,] unaConfigurazione)
         {
             if (this.Equals(new Nodo() {Punteggio = this.Punteggio, Configurazione = unaConfigurazione}))
             {
-                // PrintConfigurazione(this.Configurazione);
-                // Console.WriteLine("THIS CONFIGURAZIONE");
                 return this;
             }
-            foreach (Nodo n in ListaFigli)
+            Nodo NodoTrovato = new Nodo();
+            bool Trovato = false;
+            int i = 0;
+            while (!Trovato && i < ListaFigli.Count)
             {
-                Nodo NodoTrovato = n.CercaConfigurazione(unaConfigurazione);
+                NodoTrovato = ListaFigli[i].CercaConfigurazione(unaConfigurazione);
                 if (!NodoTrovato.Equals(new Nodo()))
                 {
-                    return NodoTrovato;
+                    Trovato = true;
                 }
+                i ++;
             }
-            return new Nodo();
+            return NodoTrovato;
         }
 
         public Nodo DimmiFiglioVincente()
@@ -190,3 +173,20 @@ namespace tris
         }
     }
 }
+
+// public Nodo CercaConfigurazione(int[,] unaConfigurazione)
+// {
+//     if (this.Equals(new Nodo() {Punteggio = this.Punteggio, Configurazione = unaConfigurazione}))
+//     {
+//         return this;
+//     }
+//     foreach (Nodo n in ListaFigli)
+//     {
+//         Nodo NodoTrovato = n.CercaConfigurazione(unaConfigurazione);
+//         if (!NodoTrovato.Equals(new Nodo()))
+//         {
+//             return NodoTrovato;
+//         }
+//     }
+//     return NodoTrovato;
+// }
