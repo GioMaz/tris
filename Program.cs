@@ -20,11 +20,12 @@ namespace tris
             };
 
 
-            // APPRENDIMENTO AUTOMATICO
             Tris tris = new Tris();
             
             if (!File.Exists("radice"))
             {
+                // APPRENDIMENTO AUTOMATICO
+                // SALVA I DATI
                 Console.WriteLine("CALCOLO MOSSE...");
                 for (int i = 0; i < 100; i ++)
                 {
@@ -36,6 +37,7 @@ namespace tris
             }
             else
             {
+                // UTILIZZA DATI SALVATI
                 radice.CaricaFigli();
                 while (true)
                 {
