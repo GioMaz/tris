@@ -60,6 +60,7 @@ namespace tris
             Cronologia = NuovaCronologia;
         }
 
+        // specchia tutte le configurazioni nella cronologia
         public void SpecchiaCronologia()
         {
             List<int[,]> NuovaCronologia = new List<int[,]> {};
