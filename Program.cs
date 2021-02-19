@@ -19,7 +19,6 @@ namespace tris
                 {0,0,0}
             };
 
-
             Tris tris = new Tris();
             
             if (!File.Exists("radice"))
@@ -30,7 +29,7 @@ namespace tris
                 for (int i = 0; i < 100; i ++)
                 {
                     tris.GiocaPartita(radice, false);
-                    tris.PassaAPartita().AggiungiCronologieRuotate(radice);
+                    tris.PassaAPartita().AggiungiTutteCronologie(radice);
                     tris = new Tris();
                 }
                 radice.SalvaFigli();
@@ -39,6 +38,7 @@ namespace tris
             {
                 // UTILIZZA DATI SALVATI
                 radice.CaricaFigli();
+                // radice.PrintFigli();
                 while (true)
                 {
                     Console.WriteLine("INIZIO PARTITA");
@@ -46,7 +46,6 @@ namespace tris
                     tris.GiocaPartita(radice, true);
                 }
             }
-
         }
     }
 }
