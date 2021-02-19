@@ -20,31 +20,26 @@ namespace tris
             };
 
             Tris tris = new Tris();
-            
-            if (!File.Exists("radice"))
+           
+            // // APPRENDIMENTO AUTOMATICO 
+            // if (!File.Exists("radice"))
+            // {
+            //     Console.WriteLine("CALCOLO MOSSE...");
+            //     for (int i = 0; i < 100; i ++)
+            //     {
+            //         tris.GiocaPartita(radice, false);
+            //         tris.PassaAPartita().AggiungiTutteCronologie(radice);
+            //         tris = new Tris();
+            //     }
+            //     radice.SalvaFigli();
+            // }
+
+            while (true)
             {
-                // APPRENDIMENTO AUTOMATICO
-                // SALVA I DATI
-                Console.WriteLine("CALCOLO MOSSE...");
-                for (int i = 0; i < 100; i ++)
-                {
-                    tris.GiocaPartita(radice, false);
-                    tris.PassaAPartita().AggiungiTutteCronologie(radice);
-                    tris = new Tris();
-                }
-                radice.SalvaFigli();
-            }
-            else
-            {
-                // UTILIZZA DATI SALVATI
-                radice.CaricaFigli();
-                // radice.PrintFigli();
-                while (true)
-                {
-                    Console.WriteLine("INIZIO PARTITA");
-                    tris = new Tris();
-                    tris.GiocaPartita(radice, true);
-                }
+                Console.WriteLine("INIZIO PARTITA");
+                tris = new Tris();
+                tris.GiocaPartita(radice, true);
+                tris.PassaAPartita().AggiungiTutteCronologie(radice);
             }
         }
     }

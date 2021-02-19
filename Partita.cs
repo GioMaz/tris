@@ -28,6 +28,7 @@ namespace tris
                             NodoFiglio.Configurazione = Cronologia[k];
                         }
                         NodoPadre.AggiungiFiglio(NodoFiglio);
+                        // Console.WriteLine(radice.CercaConfigurazione(NodoFiglio.Configurazione).Punteggio == NodoFiglio.Punteggio);
                         NodoPadre = NodoFiglio;
                     }
                     RuotaCronologia();

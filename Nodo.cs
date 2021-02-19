@@ -16,15 +16,18 @@ namespace tris
         public void AggiungiFiglio(Nodo unNodo)
         {
             // controlla se un nodo con la stessa configurazione esiste già
-            // PrintConfigurazione(CercaConfigurazione(unaConfigurazione).Configurazione);
-            // Console.WriteLine(CercaConfigurazione(unNodo.Configurazione).Equals(new Nodo()));
-            // PrintConfigurazione(unNodo.Configurazione);
-            if (CercaConfigurazione(unNodo.Configurazione).Equals(new Nodo()))
+            Nodo NodoUguale = CercaConfigurazione(unNodo.Configurazione);
+
+            if (NodoUguale.Equals(new Nodo()))
             {
                 // se non esiste aggiunge un nuovo nodo con quella configurazione
-                // Console.WriteLine("AGGIUNGENDO IL NODO...\n");
                 ListaFigli.Add(unNodo);
             }
+            // else if (NodoUguale.Punteggio != unNodo.Punteggio)
+            // {
+            //     // se esiste ed ha un punteggio diverso, cambiare il punteggio
+            //     NodoUguale.Punteggio = unNodo.Punteggio;
+            // }
         }
 
         // cerca una configurazione in maniera ricorsiva
@@ -85,9 +88,8 @@ namespace tris
                     }
                 }
             }
-            return tuttoUguale;
-            //return altroNodo.Punteggio == this.Punteggio && altroNodo.Configurazione == this.Configurazione && tuttoUguale;
-            //return altroNodo.Configurazione == this.Configurazione;
+            // return tuttoUguale;
+            return tuttoUguale && this.Punteggio == altroNodo.Punteggio;
         }
 
         public override int GetHashCode()
