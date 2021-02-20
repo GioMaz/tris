@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Collections.Generic;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace tris
 {
@@ -23,11 +22,6 @@ namespace tris
                 // se non esiste aggiunge un nuovo nodo con quella configurazione
                 ListaFigli.Add(unNodo);
             }
-            // else if (NodoUguale.Punteggio != unNodo.Punteggio)
-            // {
-            //     // se esiste ed ha un punteggio diverso, cambiare il punteggio
-            //     NodoUguale.Punteggio = unNodo.Punteggio;
-            // }
         }
 
         // cerca una configurazione in maniera ricorsiva
@@ -54,7 +48,7 @@ namespace tris
 
         public Nodo DimmiFiglioVincente()
         {
-            Nodo NodoVincente = new Nodo() {Punteggio = -2};
+            Nodo NodoVincente = new Nodo() {Punteggio = -100};
             foreach (Nodo n in ListaFigli)
             {
                 if (n.Punteggio > NodoVincente.Punteggio)
@@ -97,20 +91,23 @@ namespace tris
             return Configurazione.GetHashCode();
         }
 
-        public void SalvaFigli()
+        public void SalvaFigli(string Path)
         {
-            Stream file = File.Create("radice");
-            BinaryFormatter serializer = new BinaryFormatter();
+            StreamWriter file = new StreamWriter(Path);
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Nodo>));
             serializer.Serialize(file, ListaFigli);
             file.Close();
         }
 
-        public void CaricaFigli()
+        public void CaricaFigli(string Path)
         {
-            Stream file = File.OpenRead("radice");
-            BinaryFormatter serializer = new BinaryFormatter();
-            ListaFigli = serializer.Deserialize(file) as List<Nodo>;
-            file.Close();
+            if (File.Exists(Path))  
+            {
+                StreamReader file = new StreamReader(Path);
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Nodo>));
+                ListaFigli = serializer.Deserialize(file) as List<Nodo>;
+                file.Close();
+            }
         }
 
         public void PrintConfigurazione(int [,] tab)

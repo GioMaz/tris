@@ -12,6 +12,8 @@ namespace tris
         // ruota le configurazioni per imparare più in fretta
         public void AggiungiTutteCronologie(Nodo radice)
         {
+            Console.Write("PUNTEGGIO PARTITA: ");
+            Console.WriteLine(DimmiPunteggio());
             // specchia cronologia
             for (int i = 0; i < 2; i++)
             {
@@ -26,9 +28,8 @@ namespace tris
                         {
                             NodoFiglio.Punteggio = DimmiPunteggio();
                             NodoFiglio.Configurazione = Cronologia[k];
+                            NodoPadre.AggiungiFiglio(NodoFiglio);
                         }
-                        NodoPadre.AggiungiFiglio(NodoFiglio);
-                        // Console.WriteLine(radice.CercaConfigurazione(NodoFiglio.Configurazione).Punteggio == NodoFiglio.Punteggio);
                         NodoPadre = NodoFiglio;
                     }
                     RuotaCronologia();
@@ -85,12 +86,13 @@ namespace tris
 
         public int DimmiPunteggio()
         {
+            int n = Cronologia.Count;
             switch (Vincitore)
             {
                 case 1:
-                    return -1;
+                    return n - 10;
                 case 2:
-                    return 1;
+                    return 10 - n;
                 case -1:
                     return 0;
                 default:

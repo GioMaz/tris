@@ -24,6 +24,7 @@ namespace tris
                 if (giocatore == 1)
                 {
                     MossaGiocatore(giocatore);
+                    // MossaStupida(giocatore);
                 }
                 else
                 {
@@ -39,23 +40,30 @@ namespace tris
         {
             int [,] Tabella = Cronologia[Cronologia.Count - 1];
             Nodo ConfigurazioneSimile = radice.CercaConfigurazione(Tabella);
-            bool Trovato = false;
             if (!ConfigurazioneSimile.Equals(new Nodo()))
             {
-                Console.Write("PUNTEGGIO: ");
-                Console.WriteLine(ConfigurazioneSimile.DimmiFiglioVincente().Punteggio);
-
-                int[,] NuovaConfigurazione = ConfigurazioneSimile.DimmiFiglioVincente().Configurazione.Clone() as int[,];
-                Cronologia.Add(NuovaConfigurazione);
-                Trovato = true;
-
-                PrintTabella(Cronologia[Cronologia.Count - 1]);
+                Nodo FiglioMigliore = ConfigurazioneSimile.DimmiFiglioVincente();
+                // si accontenta di una configurazione per il pareggio
+                // if (FiglioMigliore.Punteggio > -1)
+                // vuole a tutti costi una configurazione vincente (altrimenti a caso)
+                if (FiglioMigliore.Punteggio > 0)
+                {
+                    Console.Write("PUNTEGGIO: ");
+                    Console.WriteLine(FiglioMigliore.Punteggio);
+                    int[,] NuovaConfigurazione = FiglioMigliore.Configurazione.Clone() as int[,];
+                    Cronologia.Add(NuovaConfigurazione);
+                    PrintTabella(Cronologia[Cronologia.Count - 1]);
+                }
+                else
+                {
+                    Console.WriteLine("TROVATO MA PERDENTE");
+                    MossaStupida(giocatore);
+                }
             }
             else
             {
                 Console.WriteLine("NON TROVATO");
                 MossaStupida(giocatore);
-                PrintTabella(Cronologia[Cronologia.Count - 1]);
             }
         }
 
@@ -73,7 +81,7 @@ namespace tris
                     NuovaConfigurazione[NRand/3, NRand%3] = giocatore;
                     Cronologia.Add(NuovaConfigurazione);
                     Trovato = true;
-                    // PrintTabella(NuovaConfigurazione);
+                    PrintTabella(NuovaConfigurazione);
                 }
             }
         }
@@ -91,7 +99,6 @@ namespace tris
                     NuovaConfigurazione[NScelto/3, NScelto%3] = giocatore;
                     Cronologia.Add(NuovaConfigurazione);
                     Trovato = true;
-
                     PrintTabella(NuovaConfigurazione);
                 }
             }
