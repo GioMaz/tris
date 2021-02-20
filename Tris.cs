@@ -15,7 +15,7 @@ namespace tris
             });
         }
 
-        public void GiocaPartita(Nodo radice, bool intelligente)
+        public void GiocaPartita(Nodo radice)
         {
             int Turno = 0;
             while (DimmiVincitore() == 0)
@@ -23,26 +23,11 @@ namespace tris
                 int giocatore = Turno%2 + 1;
                 if (giocatore == 1)
                 {
-                    if (intelligente)
-                    {
-                        MossaGiocatore(giocatore);
-                        // MossaIntelligente(radice, giocatore);
-                    }
-                    else
-                    {
-                        MossaStupida(giocatore);
-                    }
+                    MossaGiocatore(giocatore);
                 }
                 else
                 {
-                    if (intelligente)
-                    {
-                        MossaIntelligente(radice, giocatore);
-                    }
-                    else
-                    {
-                        MossaStupida(giocatore);
-                    }
+                    MossaIntelligente(radice, giocatore);
                 }
                 Turno ++;
             }

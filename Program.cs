@@ -38,7 +38,7 @@ namespace tris
             {
                 Console.WriteLine("INIZIO PARTITA");
                 tris = new Tris();
-                tris.GiocaPartita(radice, true);
+                tris.GiocaPartita(radice);
                 tris.PassaAPartita().AggiungiTutteCronologie(radice);
             }
         }
