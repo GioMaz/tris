@@ -24,7 +24,7 @@ namespace tris
                 if (giocatore == 1)
                 {
                     MossaGiocatore(giocatore);
-                    // MossaStupida(giocatore);
+                    // MossaIntelligente(radice, giocatore);
                 }
                 else
                 {
@@ -46,9 +46,10 @@ namespace tris
                 // si accontenta di una configurazione per il pareggio
                 // if (FiglioMigliore.Punteggio > -1)
                 // vuole a tutti costi una configurazione vincente (altrimenti a caso)
-                if (FiglioMigliore.Punteggio > 0)
+                Console.Write("PUNTEGGIO: ");
+                Console.WriteLine(FiglioMigliore.Punteggio);
+                if (FiglioMigliore.Punteggio >= 0)
                 {
-                    Console.Write("PUNTEGGIO: ");
                     Console.WriteLine(FiglioMigliore.Punteggio);
                     int[,] NuovaConfigurazione = FiglioMigliore.Configurazione.Clone() as int[,];
                     Cronologia.Add(NuovaConfigurazione);
@@ -56,7 +57,7 @@ namespace tris
                 }
                 else
                 {
-                    Console.WriteLine("TROVATO MA PERDENTE");
+                    Console.WriteLine("(PERDENTE)");
                     MossaStupida(giocatore);
                 }
             }

@@ -1,30 +1,42 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace tris
 {
     [Serializable]
-    class Nodo
+    public class Nodo
     {
-        public int Punteggio { get; set; }
+        public int? Punteggio { get; set; } = null;
         public int[,] Configurazione { get; set; }
         public List<Nodo> ListaFigli = new List<Nodo>();
 
+        // aggiunge un figlio
+        // se non esiste lo crea
+        // se esiste già ne modifica il punteggio
         public void AggiungiFiglio(Nodo unNodo)
         {
             // controlla se un nodo con la stessa configurazione esiste già
             Nodo NodoUguale = CercaConfigurazione(unNodo.Configurazione);
 
+            // se non esiste aggiunge un nuovo nodo con quella configurazione
             if (NodoUguale.Equals(new Nodo()))
             {
-                // se non esiste aggiunge un nuovo nodo con quella configurazione
+                Console.WriteLine("E NUOVO");
                 ListaFigli.Add(unNodo);
             }
+            // se esiste allora cambia il punteggio
+            else
+            {
+                Console.WriteLine("NON E NUOVO PER CUI CAMBIO IL PUNTEGGIO");
+                NodoUguale.Punteggio = unNodo.Punteggio;
+            }
         }
+        
 
         // cerca una configurazione in maniera ricorsiva
+        // partendo dal nodo corrente
         public Nodo CercaConfigurazione(int[,] unaConfigurazione)
         {
             if (this.Equals(new Nodo() {Punteggio = this.Punteggio, Configurazione = unaConfigurazione}))
@@ -46,28 +58,15 @@ namespace tris
             return NodoTrovato;
         }
 
-        public Nodo DimmiFiglioVincente()
-        {
-            Nodo NodoVincente = new Nodo() {Punteggio = -100};
-            foreach (Nodo n in ListaFigli)
-            {
-                if (n.Punteggio > NodoVincente.Punteggio)
-                {
-                    NodoVincente = n;
-                }
-            }
-            return NodoVincente;
-        }
-
         // override del metodo equals
         public override bool Equals(object n)
         {
             Nodo altroNodo = n as Nodo;
-            if (this.Configurazione == null && altroNodo.Configurazione == null)
+            if (this.Configurazione == null && altroNodo.Configurazione == null && this.Punteggio == null && altroNodo.Punteggio == null)
             {
                 return true;
             }
-            else if (this.Configurazione == null || altroNodo.Configurazione == null)
+            else if (this.Configurazione == null || altroNodo.Configurazione == null || this.Punteggio == null || altroNodo.Punteggio == null)
             {
                 return false;
             }
@@ -82,32 +81,49 @@ namespace tris
                     }
                 }
             }
-            // return tuttoUguale;
             return tuttoUguale && this.Punteggio == altroNodo.Punteggio;
+        }
+
+        public Nodo DimmiFiglioVincente()
+        {
+            Nodo NodoVincente = new Nodo();
+            if (ListaFigli.Count != 0)
+            {
+                NodoVincente.Punteggio = -100;
+                foreach (Nodo n in ListaFigli)
+                {
+                    if (n.Punteggio > NodoVincente.Punteggio)
+                    {
+                        NodoVincente = n;
+                    }
+                }
+                return NodoVincente;
+            }
+            else
+            {
+                return NodoVincente;
+            }
+        }
+
+        public void SalvaFigli()
+        {
+            Stream file = File.Create("radice");
+            BinaryFormatter serializer = new BinaryFormatter();
+            serializer.Serialize(file, ListaFigli);
+            file.Close();
+        }
+
+        public void CaricaFigli()
+        {
+            Stream file = File.OpenRead("radice");
+            BinaryFormatter serializer = new BinaryFormatter();
+            ListaFigli = serializer.Deserialize(file) as List<Nodo>;
+            file.Close();
         }
 
         public override int GetHashCode()
         {
             return Configurazione.GetHashCode();
-        }
-
-        public void SalvaFigli(string Path)
-        {
-            StreamWriter file = new StreamWriter(Path);
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Nodo>));
-            serializer.Serialize(file, ListaFigli);
-            file.Close();
-        }
-
-        public void CaricaFigli(string Path)
-        {
-            if (File.Exists(Path))  
-            {
-                StreamReader file = new StreamReader(Path);
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Nodo>));
-                ListaFigli = serializer.Deserialize(file) as List<Nodo>;
-                file.Close();
-            }
         }
 
         public void PrintConfigurazione(int [,] tab)
@@ -117,7 +133,7 @@ namespace tris
                 for (int j = 0; j < tab.GetLength(1); j++)
                 {
                     Console.Write(tab[i,j]);
-                    Console.Write(" ");
+                    // Console.Write(" ");
                 }
                 Console.WriteLine();
             }

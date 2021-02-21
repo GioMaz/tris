@@ -24,12 +24,9 @@ namespace tris
                     for (int k = 1; k < Cronologia.Count; k++)
                     {
                         Nodo NodoFiglio = radice.CercaConfigurazione(Cronologia[k]);
-                        if (NodoFiglio.Equals(new Nodo()))
-                        {
-                            NodoFiglio.Punteggio = DimmiPunteggio();
-                            NodoFiglio.Configurazione = Cronologia[k];
-                            NodoPadre.AggiungiFiglio(NodoFiglio);
-                        }
+                        NodoFiglio.Punteggio = DimmiPunteggio();
+                        NodoFiglio.Configurazione = Cronologia[k];
+                        NodoPadre.AggiungiFiglio(NodoFiglio);
                         NodoPadre = NodoFiglio;
                     }
                     RuotaCronologia();
@@ -90,9 +87,9 @@ namespace tris
             switch (Vincitore)
             {
                 case 1:
-                    return n - 10;
+                    return n - 11;
                 case 2:
-                    return 10 - n;
+                    return 11 - n;
                 case -1:
                     return 0;
                 default:

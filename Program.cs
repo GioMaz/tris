@@ -21,8 +21,7 @@ namespace tris
 
             Tris tris = new Tris();
 
-            // while (true)
-            for (int i = 0; i < 100; i++)
+            while (true)
             {
                 Console.WriteLine("INIZIO NUOVA PARTITA");
                 tris = new Tris();
