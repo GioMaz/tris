@@ -27,11 +27,11 @@ namespace tris
                 ListaFigli.Add(unNodo);
             }
             // se esiste allora cambia il punteggio
-            else
-            {
-                Console.WriteLine("NON E NUOVO PER CUI CAMBIO IL PUNTEGGIO");
-                NodoUguale.Punteggio = unNodo.Punteggio;
-            }
+            // else
+            // {
+            //     Console.WriteLine("NON E NUOVO PER CUI CAMBIO IL PUNTEGGIO");
+            //     NodoUguale.Punteggio = unNodo.Punteggio;
+            // }
         }
         
 

@@ -166,24 +166,24 @@ namespace tris
                     vincitore = giocatoreDia2;
                 }
             }
-            bool pareggio = true;
+            bool tuttePiene = true;
             for (int i = 0; i <= Tabella.GetLength(0) - 1; i++)
             {
                 for (int j = 0; j <= Tabella.GetLength(1) - 1; j++)
                 {
                     if (Tabella[i,j] == 0)
                     {
-                        pareggio = false;
+                        tuttePiene = false;
                     }
                 }
             }
-            if (!pareggio)
+            if (tuttePiene && vincitore == 0)
             {
-                return vincitore;
+                return -1;
             }
             else
             {
-                return -1;
+                return vincitore;
             }
         }
 
