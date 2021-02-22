@@ -96,13 +96,23 @@ namespace tris
                     {
                         NodoVincente = n;
                     }
+                    // if (n.DimmiProspettivaVittoria(0) > NodoVincente.DimmiProspettivaVittoria(0))
+                    // {
+                    //     NodoVincente = n;
+                    // }
                 }
-                return NodoVincente;
             }
-            else
+            return NodoVincente;
+        }
+
+        public int? DimmiProspettivaVittoria(int? valorePartenza)
+        {
+            int? nuovoValorePartenza = valorePartenza + this.Punteggio;
+            foreach (Nodo n in ListaFigli)
             {
-                return NodoVincente;
+                nuovoValorePartenza += n.DimmiProspettivaVittoria(nuovoValorePartenza);
             }
+            return nuovoValorePartenza;
         }
 
         public void SalvaFigli()
@@ -157,8 +167,11 @@ namespace tris
             }
             foreach (Nodo n in ListaFigli)
             {
-                n.PrintFigli();
+                // n.printfigli();
+                Console.Write(n.Punteggio);
+                Console.Write("    ");
             }
+            Console.WriteLine();
         }
 
         public void PrintAlbero()

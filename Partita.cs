@@ -15,10 +15,10 @@ namespace tris
             Console.Write("PUNTEGGIO PARTITA: ");
             Console.WriteLine(DimmiPunteggio());
             // specchia cronologia
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 4; i++) // 2
             {
                 // ruota cronologia
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < 8; j++) // 4
                 {
                     Nodo NodoPadre = radice;
                     for (int k = 1; k < Cronologia.Count; k++)
@@ -84,6 +84,8 @@ namespace tris
         public int DimmiPunteggio()
         {
             int n = Cronologia.Count;
+            // se è vinta, poche mosse è meglio
+            // se è persa, tante mosse è meglio
             switch (Vincitore)
             {
                 case 1:

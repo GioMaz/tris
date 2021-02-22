@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace tris
 {
@@ -23,7 +24,8 @@ namespace tris
                 int giocatore = Turno%2 + 1;
                 if (giocatore == 1)
                 {
-                    MossaGiocatore(giocatore);
+                    MossaGiocatore(radice, giocatore);
+                    // MossaStupida(giocatore);
                     // MossaIntelligente(radice, giocatore);
                 }
                 else
@@ -48,16 +50,19 @@ namespace tris
                 // vuole a tutti costi una configurazione vincente (altrimenti a caso)
                 Console.Write("PUNTEGGIO: ");
                 Console.WriteLine(FiglioMigliore.Punteggio);
-                if (FiglioMigliore.Punteggio >= 0)
+                // Console.Write("PROSPETTIVA VITTORIA:");
+                // Console.WriteLine(FiglioMigliore.DimmiProspettivaVittoria(0));
+                Console.WriteLine(ConfigurazioneSimile.ListaFigli.Count == 8);
+                if (FiglioMigliore.Punteggio >= 0 || ConfigurazioneSimile.ListaFigli.Count == 8)
                 {
-                    Console.WriteLine(FiglioMigliore.Punteggio);
+                    Console.WriteLine("NE RIUTILIZZO UNO");
                     int[,] NuovaConfigurazione = FiglioMigliore.Configurazione.Clone() as int[,];
                     Cronologia.Add(NuovaConfigurazione);
                     PrintTabella(Cronologia[Cronologia.Count - 1]);
                 }
                 else
                 {
-                    Console.WriteLine("(PERDENTE)");
+                    Console.WriteLine("(PERDENTE), NE CREO UNO NUOVO");
                     MossaStupida(giocatore);
                 }
             }
@@ -87,13 +92,19 @@ namespace tris
             }
         }
 
-        public void MossaGiocatore(int giocatore)
+        public void MossaGiocatore(Nodo radice, int giocatore)
         {
             int [,] Tabella = Cronologia[Cronologia.Count - 1];
             bool Trovato = false;
             while (!Trovato)
             {
-                int NScelto = Convert.ToInt32(Console.ReadLine()) - 1;
+                string SScelto = Console.ReadLine();
+                if (!Regex.IsMatch(SScelto, @"^\d+$"))
+                {
+                    Console.WriteLine("SALVATAGGIO RADICE...");
+                    radice.SalvaFigli();
+                }
+                int NScelto = Convert.ToInt32(SScelto) - 1;
                 if (NScelto < 9 && -1 < NScelto && Tabella[NScelto/3, NScelto%3] == 0)
                 {
                     int[,] NuovaConfigurazione = Tabella.Clone() as int[,];

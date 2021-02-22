@@ -13,6 +13,7 @@ namespace tris
                 {0,0,0},
                 {0,0,0}
             }};
+
             int[,] ConfProva = new int[,] {
                 {1,0,0},
                 {0,0,0},
@@ -21,13 +22,19 @@ namespace tris
 
             Tris tris = new Tris();
 
+            radice.CaricaFigli();
             while (true)
             {
+                if (radice.ListaFigli.Count != 0)
+                {
+                    radice.ListaFigli[0].PrintFigli();
+                }
                 Console.WriteLine("INIZIO NUOVA PARTITA");
                 tris = new Tris();
                 tris.GiocaPartita(radice);
                 tris.PassaAPartita().AggiungiTutteCronologie(radice);
             }
+            // radice.SalvaFigli();
         }
     }
 }
