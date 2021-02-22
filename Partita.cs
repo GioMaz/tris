@@ -24,9 +24,12 @@ namespace tris
                     for (int k = 1; k < Cronologia.Count; k++)
                     {
                         Nodo NodoFiglio = radice.CercaConfigurazione(Cronologia[k]);
-                        NodoFiglio.Punteggio = DimmiPunteggio();
-                        NodoFiglio.Configurazione = Cronologia[k];
-                        NodoPadre.AggiungiFiglio(NodoFiglio);
+                        if (NodoFiglio.Equals(new Nodo()))
+                        {
+                            NodoFiglio.Punteggio = DimmiPunteggio();
+                            NodoFiglio.Configurazione = Cronologia[k];
+                            NodoPadre.AggiungiFiglio(NodoFiglio);
+                        }
                         NodoPadre = NodoFiglio;
                     }
                     RuotaCronologia();
