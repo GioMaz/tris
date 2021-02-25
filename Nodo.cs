@@ -32,7 +32,7 @@ namespace tris
             //     NodoUguale.Punteggio = unNodo.Punteggio;
             // }
         }
-        
+
         // cerca una configurazione in maniera ricorsiva
         // partendo dal nodo corrente
         public Nodo CercaConfigurazione(int[,] unaConfigurazione)
@@ -84,16 +84,14 @@ namespace tris
 
         public Nodo DimmiMossaVincente(int giocatore)
         {
-            Nodo NodoVincente = DimmiNodoDiversoDaFigli(giocatore);
-            // Console.WriteLine("GIOCATORE MIGLIORE TRA QUELLI PRESENTI");
+            // Nodo NodoVincente = DimmiNodoDiversoDaFigli(giocatore);
+            Nodo NodoVincente = new Nodo();
             if (NodoVincente.Equals(new Nodo()))
             {
                 NodoVincente = DimmiNodoMiglioreTraFigli();
-                // Console.WriteLine("GIOCATORE DIVERSO DA FIGLI");
             }
             if (NodoVincente.Equals(new Nodo()))
             {
-                // Console.WriteLine("GIOCATORE A CASO");
                 NodoVincente = DimmiNodoRandom(giocatore);
             }
             NodoVincente.Punteggio = 0;

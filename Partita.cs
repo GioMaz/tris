@@ -26,37 +26,22 @@ namespace tris
                     for (int k = 1; k < Cronologia.Count; k++)
                     {
                         Nodo NodoSimile = radice.CercaConfigurazione(Cronologia[k]);
-                        Nodo NodoFiglio;
 
                         if (NodoSimile.Equals(new Nodo()))
                         {
-                            NodoFiglio = new Nodo() {Configurazione = Cronologia[k], Punteggio = Punteggio};
+                            GiaSommato.Add(Cronologia[k]);
+                            Nodo NodoFiglio = new Nodo() {Configurazione = Cronologia[k], Punteggio = Punteggio};
                             NodoPadre.AggiungiFiglio(NodoFiglio);
                             NodoPadre = NodoFiglio;
                         }
-                        // else if (!GiaSommato.Contains(Cronologia[k]))
                         else
                         {
-                            NodoSimile.Punteggio += Punteggio;
+                            if (!GiaSommato.Contains(NodoSimile.Configurazione))
+                            {
+                                NodoSimile.Punteggio += Punteggio;
+                                GiaSommato.Add(NodoSimile.Configurazione);
+                            }
                             NodoPadre = NodoSimile;
-                        }
-                        
-                        // if (NodoFiglio.Punteggio == null)
-                        // {
-                        //     NodoFiglio.Punteggio = 0;
-                        // }
-                        // if (!GiaSommato.Contains(Cronologia[k]))
-                        // {
-                        //     NodoFiglio.Punteggio += Punteggio;
-                        //     GiaSommato.Add(Cronologia[k]);
-                        // }
-                        // NodoFiglio.Configurazione = Cronologia[k];
-                        // NodoPadre.AggiungiFiglio(NodoFiglio);
-                        // NodoPadre = NodoFiglio;
-
-                        if (radice.ListaFigli.Count != 0)
-                        {
-                            radice.ListaFigli[0].PrintFigli();
                         }
                     }
                     RuotaCronologia();
@@ -143,12 +128,22 @@ namespace tris
             Console.WriteLine();
         }
 
-        public void PrintCronologia(List<int[,]> Cron)
+        public void PrintCronologia(List<int[,]> tab)
         {
-            foreach (int [,] c in Cron)
+            // Console.WriteLine("FIGLI: ");
+            for (int i = 0; i < 3; i++)
             {
-                PrintConfigurazione(c);
+                foreach (int[,] n in tab)
+                {
+                    for (int j = 0; j < n.GetLength(0); j++)
+                    {
+                        Console.Write(n[i, j]);
+                    }
+                    Console.Write("   ");
+                }
+                Console.WriteLine();
             }
+            Console.WriteLine();
         }
     }
 }
