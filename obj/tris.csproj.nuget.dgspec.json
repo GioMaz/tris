@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/giovanni/Desktop/Bandiera/tris/tris.csproj": {}
+    "/Users/giovanni/Desktop/tris/tris.csproj": {}
   },
   "projects": {
-    "/Users/giovanni/Desktop/Bandiera/tris/tris.csproj": {
+    "/Users/giovanni/Desktop/tris/tris.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/giovanni/Desktop/Bandiera/tris/tris.csproj",
+        "projectUniqueName": "/Users/giovanni/Desktop/tris/tris.csproj",
         "projectName": "tris",
-        "projectPath": "/Users/giovanni/Desktop/Bandiera/tris/tris.csproj",
+        "projectPath": "/Users/giovanni/Desktop/tris/tris.csproj",
         "packagesPath": "/Users/giovanni/.nuget/packages/",
-        "outputPath": "/Users/giovanni/Desktop/Bandiera/tris/obj/",
+        "outputPath": "/Users/giovanni/Desktop/tris/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/giovanni/.nuget/NuGet/NuGet.Config"

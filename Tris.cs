@@ -44,7 +44,7 @@ namespace tris
             Nodo ConfigurazioneSimile = radice.CercaConfigurazione(Tabella);
             if (!ConfigurazioneSimile.Equals(new Nodo()))
             {
-                Nodo FiglioMigliore = ConfigurazioneSimile.DimmiFiglioVincente();
+                Nodo FiglioMigliore = ConfigurazioneSimile.DimmiMossaVincente(giocatore);
                 // si accontenta di una configurazione per il pareggio
                 // if (FiglioMigliore.Punteggio > -1)
                 // vuole a tutti costi una configurazione vincente (altrimenti a caso)
@@ -52,19 +52,14 @@ namespace tris
                 Console.WriteLine(FiglioMigliore.Punteggio);
                 // Console.Write("PROSPETTIVA VITTORIA:");
                 // Console.WriteLine(FiglioMigliore.DimmiProspettivaVittoria(0));
-                Console.WriteLine(ConfigurazioneSimile.ListaFigli.Count == 8);
-                if (FiglioMigliore.Punteggio >= 0 || ConfigurazioneSimile.ListaFigli.Count == 8)
-                {
-                    Console.WriteLine("NE RIUTILIZZO UNO");
+                // if (FiglioMigliore.Punteggio >= 0 || ConfigurazioneSimile.ListaFigli.Count == 8)
+                // if (FiglioMigliore.Punteggio >= 0)
+                // {
+                    // Console.WriteLine("RICAVATO DA CLASSE NODO");
                     int[,] NuovaConfigurazione = FiglioMigliore.Configurazione.Clone() as int[,];
                     Cronologia.Add(NuovaConfigurazione);
                     PrintTabella(Cronologia[Cronologia.Count - 1]);
-                }
-                else
-                {
-                    Console.WriteLine("(PERDENTE), NE CREO UNO NUOVO");
-                    MossaStupida(giocatore);
-                }
+                // }
             }
             else
             {
