@@ -13,9 +13,9 @@ namespace tris
         public void AggiungiTutteCronologie(Nodo radice)
         {
             List<int[,]> GiaSommato = new List<int[,]>();
-            Console.Write("PUNTEGGIO PARTITA: ");
-            Console.WriteLine(DimmiPunteggio());
-            int? Punteggio = DimmiPunteggio();
+            // Console.Write("PUNTEGGIO PARTITA: ");
+            // Console.WriteLine(DimmiPunteggio());
+            // int? NuovoPunteggio = DimmiPunteggio(0);
             // specchia cronologia
             for (int i = 0; i < 2; i++) // 2
             {
@@ -25,12 +25,12 @@ namespace tris
                     Nodo NodoPadre = radice;
                     for (int k = 1; k < Cronologia.Count; k++)
                     {
-                        Nodo NodoSimile = radice.CercaConfigurazione(Cronologia[k]);
+                        Nodo NodoSimile = NodoPadre.CercaConfigurazione(Cronologia[k]);
 
                         if (NodoSimile.Equals(new Nodo()))
                         {
                             GiaSommato.Add(Cronologia[k]);
-                            Nodo NodoFiglio = new Nodo() {Configurazione = Cronologia[k], Punteggio = Punteggio};
+                            Nodo NodoFiglio = new Nodo() {Configurazione = Cronologia[k], Punteggio = DimmiPunteggio(0)};
                             NodoPadre.AggiungiFiglio(NodoFiglio);
                             NodoPadre = NodoFiglio;
                         }
@@ -38,7 +38,7 @@ namespace tris
                         {
                             if (!GiaSommato.Contains(NodoSimile.Configurazione))
                             {
-                                NodoSimile.Punteggio += Punteggio;
+                                NodoSimile.Punteggio = DimmiPunteggio(NodoSimile.Punteggio);
                                 GiaSommato.Add(NodoSimile.Configurazione);
                             }
                             NodoPadre = NodoSimile;
@@ -96,7 +96,7 @@ namespace tris
             Cronologia = NuovaCronologia;
         }
 
-        public int DimmiPunteggio()
+        public int? DimmiPunteggio(int? vecchioPunteggio)
         {
             int n = Cronologia.Count;
             // se è vinta, poche mosse è meglio
@@ -104,7 +104,7 @@ namespace tris
             switch (Vincitore)
             {
                 case 1:
-                    return n - 11;
+                    return vecchioPunteggio + n - 11;
                 case 2:
                     return 11 - n;
                 case -1:
@@ -113,6 +113,10 @@ namespace tris
                     return 0;
             }
         }
+
+//-----------------------------------------------------
+// Print
+//-----------------------------------------------------
 
         public void PrintConfigurazione(int [,] tab)
         {

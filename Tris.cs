@@ -44,7 +44,8 @@ namespace tris
             Nodo ConfigurazioneSimile = radice.CercaConfigurazione(Tabella);
             if (!ConfigurazioneSimile.Equals(new Nodo()))
             {
-                Nodo FiglioMigliore = ConfigurazioneSimile.DimmiMossaVincente(giocatore);
+                ConfigurazioneSimile.PrintFigli();
+                Nodo FiglioMigliore = ConfigurazioneSimile.DimmiConfigurazioneVincente(giocatore);
                 // si accontenta di una configurazione per il pareggio
                 // if (FiglioMigliore.Punteggio > -1)
                 // vuole a tutti costi una configurazione vincente (altrimenti a caso)
@@ -56,9 +57,9 @@ namespace tris
                 // if (FiglioMigliore.Punteggio >= 0)
                 // {
                     // Console.WriteLine("RICAVATO DA CLASSE NODO");
-                    int[,] NuovaConfigurazione = FiglioMigliore.Configurazione.Clone() as int[,];
-                    Cronologia.Add(NuovaConfigurazione);
-                    PrintTabella(Cronologia[Cronologia.Count - 1]);
+                int[,] NuovaConfigurazione = FiglioMigliore.Configurazione.Clone() as int[,];
+                Cronologia.Add(NuovaConfigurazione);
+                PrintTabella(Cronologia[Cronologia.Count - 1]);
                 // }
             }
             else
@@ -94,11 +95,11 @@ namespace tris
             while (!Trovato)
             {
                 string SScelto = Console.ReadLine();
-                if (!Regex.IsMatch(SScelto, @"^\d+$"))
-                {
-                    Console.WriteLine("SALVATAGGIO RADICE...");
-                    radice.SalvaFigli();
-                }
+                // if (!Regex.IsMatch(SScelto, @"^\d+$"))
+                // {
+                //     Console.WriteLine("SALVATAGGIO RADICE...");
+                //     radice.SalvaFigli();
+                // }
                 int NScelto = Convert.ToInt32(SScelto) - 1;
                 if (NScelto < 9 && -1 < NScelto && Tabella[NScelto/3, NScelto%3] == 0)
                 {
@@ -192,6 +193,10 @@ namespace tris
                 return vincitore;
             }
         }
+
+//-----------------------------------------------------
+// Print
+//-----------------------------------------------------
 
         public void PrintTabella(int [,] tab)
         {
