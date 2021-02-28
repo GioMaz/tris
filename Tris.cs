@@ -25,8 +25,6 @@ namespace tris
                 if (giocatore == 1)
                 {
                     MossaGiocatore(radice, giocatore);
-                    // MossaStupida(giocatore);
-                    // MossaIntelligente(radice, giocatore);
                 }
                 else
                 {
@@ -44,33 +42,26 @@ namespace tris
             Nodo ConfigurazioneSimile = radice.CercaConfigurazione(Tabella);
             if (!ConfigurazioneSimile.Equals(new Nodo()))
             {
+                // PRINTA FIGLI DISPONIBILI 
+                // (tenere per trovare eventuali errori nella creazione dell'albero)
+                // UTILE A SCOPO DI DEBUG
                 ConfigurazioneSimile.PrintFigli();
+
                 Nodo FiglioMigliore = ConfigurazioneSimile.DimmiConfigurazioneVincente(giocatore);
-                // si accontenta di una configurazione per il pareggio
-                // if (FiglioMigliore.Punteggio > -1)
-                // vuole a tutti costi una configurazione vincente (altrimenti a caso)
                 Console.Write("PUNTEGGIO: ");
                 Console.WriteLine(FiglioMigliore.Punteggio);
-                // Console.Write("PROSPETTIVA VITTORIA:");
-                // Console.WriteLine(FiglioMigliore.DimmiProspettivaVittoria(0));
-                // if (FiglioMigliore.Punteggio >= 0 || ConfigurazioneSimile.ListaFigli.Count == 8)
-                // if (FiglioMigliore.Punteggio >= 0)
-                // {
-                    // Console.WriteLine("RICAVATO DA CLASSE NODO");
                 int[,] NuovaConfigurazione = FiglioMigliore.Configurazione.Clone() as int[,];
                 Cronologia.Add(NuovaConfigurazione);
                 PrintTabella(Cronologia[Cronologia.Count - 1]);
-                // }
             }
             else
             {
                 Console.WriteLine("NON TROVATO");
                 MossaRandom(giocatore);
-                // MossaStupida(giocatore);
             }
         }
 
-        public void MossaRandom(int giocatore) // SERVE PER DIVERSIFICARE L'APPRENDIMENTO
+        public void MossaRandom(int giocatore) // NEL CASO NON SI CONOSCA LA CONFIGURAZIONE ATTUALE
         {
             List<int[,]> MossePossibili = new List<int[,]>();
             int [,] Tabella = Cronologia[Cronologia.Count - 1];
@@ -99,6 +90,7 @@ namespace tris
             while (!Trovato)
             {
                 string SScelto = Console.ReadLine();
+                // uncomment per salvare radice a fine sessione
                 // if (!Regex.IsMatch(SScelto, @"^\d+$"))
                 // {
                 //     Console.WriteLine("SALVATAGGIO RADICE...");

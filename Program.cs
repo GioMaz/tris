@@ -14,30 +14,28 @@ namespace tris
                 {0,0,0}
             }};
 
-            int[,] ConfProva = new int[,] {
-                {1,0,1},
-                {0,2,0},
-                {0,0,2}
-            };
-            int[,] ConfProva1 = new int[,] {
-                {1,0,1},
-                {0,2,0},
-                {2,0,0}
-            };
+            // int[,] ConfProva = new int[,] {
+            //     {1,0,1},
+            //     {0,2,0},
+            //     {0,0,2}
+            // };
+            // int[,] ConfProva1 = new int[,] {
+            //     {1,0,1},
+            //     {0,2,0},
+            //     {2,0,0}
+            // };
 
             Tris tris = new Tris();
 
+            // uncomment se si vuole caricare il nodo RADICE
             // radice.CaricaFigli();
             while (true)
             {
                 tris = new Tris();
                 tris.GiocaPartita(radice);
                 tris.PassaAPartita().AggiungiTutteCronologie(radice);
-                // Console.WriteLine(radice.CercaConfigurazione(ConfProva).Equals(new Nodo()));
-                // Console.WriteLine(radice.CercaConfigurazione(ConfProva1).Equals(new Nodo()));
                 Console.WriteLine("INIZIO NUOVA PARTITA\n");
             }
-            // radice.SalvaFigli();
         }
     }
 }

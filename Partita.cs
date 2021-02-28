@@ -13,9 +13,6 @@ namespace tris
         public void AggiungiTutteCronologie(Nodo radice)
         {
             List<int[,]> GiaSommato = new List<int[,]>();
-            // Console.Write("PUNTEGGIO PARTITA: ");
-            // Console.WriteLine(DimmiPunteggio());
-            // int? NuovoPunteggio = DimmiPunteggio(0);
             // specchia cronologia
             for (int i = 0; i < 2; i++) // 2
             {
@@ -26,7 +23,7 @@ namespace tris
                     for (int k = 1; k < Cronologia.Count; k++)
                     {
                         Nodo NodoSimile = NodoPadre.CercaConfigurazione(Cronologia[k]);
-
+                        
                         if (NodoSimile.Equals(new Nodo()))
                         {
                             GiaSommato.Add(Cronologia[k]);

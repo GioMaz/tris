@@ -12,26 +12,9 @@ namespace tris
         public int[,] Configurazione { get; set; }
         public List<Nodo> ListaFigli = new List<Nodo>();
 
-        // aggiunge un figlio
-        // se non esiste lo crea
-        // se esiste già ne modifica il punteggio
         public void AggiungiFiglio(Nodo unNodo)
         {
-            // controlla se un nodo con la stessa configurazione esiste già
-            // Nodo NodoUguale = CercaConfigurazione(unNodo.Configurazione);
-            // se non esiste aggiunge un nuovo nodo con quella configurazione
-            // if (NodoUguale.Equals(new Nodo()))
-            // {
-                // Console.WriteLine("E NUOVO");
-                ListaFigli.Add(unNodo);
-                // PrintConfigurazione(unNodo.Configurazione);
-            // }
-            // // se esiste allora cambia il punteggio
-            // else
-            // {
-            //     Console.WriteLine("NON E NUOVO PER CUI CAMBIO IL PUNTEGGIO");
-            //     NodoUguale.Punteggio = unNodo.Punteggio;
-            // }
+            ListaFigli.Add(unNodo);
         }
 
         // cerca una configurazione in maniera ricorsiva
@@ -83,6 +66,7 @@ namespace tris
             return tuttoUguale && this.Punteggio == altroNodo.Punteggio;
         }
 
+        // ritorna nodo con configurazione mossa preferibile data quella attuale
         public Nodo DimmiConfigurazioneVincente(int giocatore)
         {
             Nodo NodoVincente = DimmiFiglioVincente(true);
@@ -140,6 +124,7 @@ namespace tris
             }
         }
 
+        // ritorna nodo figlio con punteggio più alto
         public Nodo DimmiFiglioVincente(bool maggioreDiZero)
         {
             Nodo NodoVincente = new Nodo();
@@ -157,29 +142,7 @@ namespace tris
             return NodoVincente;
         }
 
-        // public Nodo DimmiFiglioRandom(int giocatore)
-        // {
-        //     List<int[,]> ConfigurazioniPossibili = new List<int[,]>();
-        //     for (int i = 0; i < Configurazione.Length; i++)
-        //     {
-        //         int[,] NuovaConfigurazione = Configurazione.Clone() as int[,];
-        //         if (NuovaConfigurazione[i/3, i%3] == 0)
-        //         {
-        //             NuovaConfigurazione[i/3, i%3] = giocatore;
-        //         }
-        //     }
-        //     if (ConfigurazioniPossibili.Count != 0)
-        //     {
-        //         Random Rand = new Random();
-        //         int NRand = Rand.Next(0, ConfigurazioniPossibili.Count);
-        //         return new Nodo() {Configurazione = ConfigurazioniPossibili[NRand]};
-        //     }
-        //     else
-        //     {
-        //         return new Nodo();
-        //     }
-        // }
-
+        // true se un figlio ha la configurazione specificata nell'argomento
         public bool IsFiglio(int[,] conf)
         {
             bool IsFiglio = false;
@@ -193,6 +156,7 @@ namespace tris
             return IsFiglio;
         }
 
+        // ritorna il numero di 0 (caselle non specificate) nella configurazione attuale
         public int DimmiMosseDisponibili()
         {
             int MosseDisponibili = 0;
@@ -209,15 +173,10 @@ namespace tris
             return MosseDisponibili;
         }
 
-        public int CompareTo(Nodo n)
-        {
-            // return this.Punteggio.CompareTo(n.Punteggio);
-            return 1;
-        }
-
+        // salva figli in un file binario
         public void SalvaFigli()
         {
-            Stream file = File.Create("radice");
+            Stream file = File.Create("RADICE");
             BinaryFormatter serializer = new BinaryFormatter();
             serializer.Serialize(file, ListaFigli);
             file.Close();
@@ -225,7 +184,7 @@ namespace tris
 
         public void CaricaFigli()
         {
-            Stream file = File.OpenRead("radice");
+            Stream file = File.OpenRead("RADICE");
             BinaryFormatter serializer = new BinaryFormatter();
             ListaFigli = serializer.Deserialize(file) as List<Nodo>;
             file.Close();
@@ -299,20 +258,6 @@ namespace tris
             {
                 n.PrintAlbero();
                 Console.WriteLine();
-            }
-        }
-
-        // cerca una configurazione in maniera ricorsiva
-        public void CercaEPrintaConfigurazione(int[,] unaConfigurazione)
-        {
-            foreach (Nodo n in ListaFigli)
-            {
-                n.CercaEPrintaConfigurazione(unaConfigurazione);
-                if (n.Equals(new Nodo() {Configurazione = unaConfigurazione}))
-                {
-                    Console.WriteLine("HO TROVATO QUESTA");
-                    PrintConfigurazione(n.Configurazione);
-                }
             }
         }
     }
