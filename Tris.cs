@@ -65,26 +65,30 @@ namespace tris
             else
             {
                 Console.WriteLine("NON TROVATO");
-                MossaStupida(giocatore);
+                MossaRandom(giocatore);
+                // MossaStupida(giocatore);
             }
         }
 
-        public void MossaStupida(int giocatore)
+        public void MossaRandom(int giocatore) // SERVE PER DIVERSIFICARE L'APPRENDIMENTO
         {
-            Random Rand = new Random();
+            List<int[,]> MossePossibili = new List<int[,]>();
             int [,] Tabella = Cronologia[Cronologia.Count - 1];
-            bool Trovato = false;
-            while (!Trovato)
+            for (int i = 0; i < Tabella.Length; i++)
             {
-                int NRand = Rand.Next(0, Tabella.Length);
-                if (Tabella[NRand/3, NRand%3] == 0)
+                int[,] NuovaMossa = Tabella.Clone() as int[,];
+                if (NuovaMossa[i/3, i%3] == 0)
                 {
-                    int[,] NuovaConfigurazione = Tabella.Clone() as int[,];
-                    NuovaConfigurazione[NRand/3, NRand%3] = giocatore;
-                    Cronologia.Add(NuovaConfigurazione);
-                    Trovato = true;
-                    PrintTabella(NuovaConfigurazione);
+                    NuovaMossa[i/3, i%3] = giocatore;
+                    MossePossibili.Add(NuovaMossa);
                 }
+            }
+            if (MossePossibili.Count != 0)
+            {
+                Random Rand = new Random();
+                int NRand = Rand.Next(0, MossePossibili.Count);
+                Cronologia.Add(MossePossibili[NRand]);
+                PrintTabella(MossePossibili[NRand]);
             }
         }
 

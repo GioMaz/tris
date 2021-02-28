@@ -104,12 +104,9 @@ namespace tris
             return NodoVincente;
         }
 
-        // ATTENZIONE
-        // funzione che ritorna nodo non presente tra i figli, serve per diversificare l'apprendimento
-        // e non proporre sempre le stesse configurazioni tramite un semplice random
         // ***
         // public Nodo DimmiFiglioRandom(int giocatore, bool diversoDaFigli)
-        public Nodo DimmiFiglioRandom(int giocatore)
+        public Nodo DimmiFiglioRandom(int giocatore) // SERVE PER DIVERSIFICARE L'APPRENDIMENTO
         {
             List<int[,]> ConfigurazioniPossibili = new List<int[,]>();
             for (int i = 0; i < Configurazione.Length; i++)
@@ -127,7 +124,6 @@ namespace tris
                     // ***
                     // else if (!diversoDaFigli)
                     // {
-                    //     Console.WriteLine("RANDOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOM");
                     //     ConfigurazioniPossibili.Add(NuovaConfigurazione);
                     // }
                 }
