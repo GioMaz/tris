@@ -14,17 +14,6 @@ namespace tris
                 {0,0,0}
             }};
 
-            // int[,] ConfProva = new int[,] {
-            //     {1,0,1},
-            //     {0,2,0},
-            //     {0,0,2}
-            // };
-            // int[,] ConfProva1 = new int[,] {
-            //     {1,0,1},
-            //     {0,2,0},
-            //     {2,0,0}
-            // };
-
             Tris tris = new Tris();
 
             // uncomment se si vuole caricare il nodo RADICE

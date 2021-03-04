@@ -90,12 +90,12 @@ namespace tris
             while (!Trovato)
             {
                 string SScelto = Console.ReadLine();
-                // uncomment per salvare radice a fine sessione
-                // if (!Regex.IsMatch(SScelto, @"^\d+$"))
-                // {
-                //     Console.WriteLine("SALVATAGGIO RADICE...");
-                //     radice.SalvaFigli();
-                // }
+                // UNCOMMENT PER SALVARE RADICE A FINE SESSIONE
+                if (!Regex.IsMatch(SScelto, @"^\d+$"))
+                {
+                    Console.WriteLine("SALVATAGGIO RADICE...");
+                    radice.SalvaFigli();
+                }
                 int NScelto = Convert.ToInt32(SScelto) - 1;
                 if (NScelto < 9 && -1 < NScelto && Tabella[NScelto/3, NScelto%3] == 0)
                 {
