@@ -1,0 +1,2 @@
+- togliere radice.CercaConfigurazione() e NodoPadre.CercaConfigurazione() da Partita.cs
+  utilizzare invece NodoPadre = 'Nodo'
