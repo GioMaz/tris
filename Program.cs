@@ -17,7 +17,10 @@ namespace tris
             Tris tris = new Tris();
 
             // uncomment se si vuole caricare il nodo RADICE
-            // radice.CaricaFigli();
+            if (File.Exists("RADICE"))
+            {
+                radice.CaricaFigli();
+            }
             while (true)
             {
                 tris = new Tris();

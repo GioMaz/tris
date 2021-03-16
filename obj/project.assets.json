@@ -1,36 +1,35 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    ".NETCoreApp,Version=v3.1": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net5.0": []
+    ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "/Users/giovanni/.nuget/packages/": {}
+    "/home/giovanni/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/giovanni/Desktop/Bandiera/tris/tris.csproj",
+      "projectUniqueName": "/home/giovanni/tris/tris.csproj",
       "projectName": "tris",
-      "projectPath": "/Users/giovanni/Desktop/Bandiera/tris/tris.csproj",
-      "packagesPath": "/Users/giovanni/.nuget/packages/",
-      "outputPath": "/Users/giovanni/Desktop/Bandiera/tris/obj/",
+      "projectPath": "/home/giovanni/tris/tris.csproj",
+      "packagesPath": "/home/giovanni/.nuget/packages/",
+      "outputPath": "/home/giovanni/tris/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/giovanni/.nuget/NuGet/NuGet.Config"
+        "/home/giovanni/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net5.0"
+        "netcoreapp3.1"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "netcoreapp3.1": {
           "projectReferences": {}
         }
       },
@@ -41,8 +40,7 @@
       }
     },
     "frameworks": {
-      "net5.0": {
-        "targetAlias": "net5.0",
+      "netcoreapp3.1": {
         "imports": [
           "net461",
           "net462",
@@ -53,12 +51,18 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.8, 3.1.8]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/Cellar/dotnet/5.0.103/libexec/sdk/5.0.103/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.108/RuntimeIdentifierGraph.json"
       }
     }
   }

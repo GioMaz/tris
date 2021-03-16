@@ -7,43 +7,46 @@ namespace tris
     {
         public int Vincitore { get; set; }
         public List<int[,]> Cronologia { get; set; }
-
         // aggiunge cronologia a nodo (radice)
         // ruota le configurazioni per imparare più in fretta
         public void AggiungiTutteCronologie(Nodo radice)
         {
             List<int[,]> GiaSommato = new List<int[,]>();
             // specchia cronologia
-            for (int i = 0; i < 2; i++) // 2
+            // ruota cronologia
+            for (int i = 0; i < 8; i++) // 4
             {
-                // ruota cronologia
-                for (int j = 0; j < 4; j++) // 4
+                Nodo NodoPadre = radice;
+                for (int j = 1; j < Cronologia.Count; j++)
                 {
-                    Nodo NodoPadre = radice;
-                    for (int k = 1; k < Cronologia.Count; k++)
+                    Nodo NodoSimile = NodoPadre.CercaConfigurazione(Cronologia[j]);
+                    
+                    if (NodoSimile.Equals(new Nodo()))
                     {
-                        Nodo NodoSimile = NodoPadre.CercaConfigurazione(Cronologia[k]);
-                        
-                        if (NodoSimile.Equals(new Nodo()))
-                        {
-                            GiaSommato.Add(Cronologia[k]);
-                            Nodo NodoFiglio = new Nodo() {Configurazione = Cronologia[k], Punteggio = DimmiPunteggio(0)};
-                            NodoPadre.AggiungiFiglio(NodoFiglio);
-                            NodoPadre = NodoFiglio;
-                        }
-                        else
-                        {
-                            if (!GiaSommato.Contains(NodoSimile.Configurazione))
-                            {
-                                NodoSimile.Punteggio = DimmiPunteggio(NodoSimile.Punteggio);
-                                GiaSommato.Add(NodoSimile.Configurazione);
-                            }
-                            NodoPadre = NodoSimile;
-                        }
+                        GiaSommato.Add(Cronologia[j]);
+                        Nodo NodoFiglio = new Nodo() {Configurazione = Cronologia[j], Punteggio = DimmiPunteggio(0)};
+                        NodoPadre.AggiungiFiglio(NodoFiglio);
+                        // NodoPadre = NodoFiglio;
+                        // Molto molto lento
+                        NodoPadre = radice.CercaConfigurazione(NodoFiglio.Configurazione);
                     }
-                    RuotaCronologia();
+                    else
+                    {
+                        if (!GiaSommato.Contains(NodoSimile.Configurazione))
+                        {
+                            NodoSimile.Punteggio = DimmiPunteggio(NodoSimile.Punteggio);
+                            GiaSommato.Add(NodoSimile.Configurazione);
+                        }
+                        // NodoPadre = NodoSimile;
+                        // Molto molto lento
+                        NodoPadre = radice.CercaConfigurazione(NodoSimile.Configurazione);
+                    }
                 }
-                SpecchiaCronologia();
+                RuotaCronologia();
+                if (i == 3) // non so se è giusto
+                {
+                    SpecchiaCronologia();
+                }
             }
         }
 
@@ -148,4 +151,3 @@ namespace tris
         }
     }
 }
-
