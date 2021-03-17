@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "gTwDTZvvLB65e1dntf5qlhfYwguJ5ZRL7lx7ne4mcbYYAUlV5ByqezX1bKRLXAGg5zqcpmx471LFWouSrA69lQ==",
+  "success": true,
+  "projectFilePath": "/home/giovanni/tris/tris.csproj",
+  "expectedPackageFiles": [
+    "/home/giovanni/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

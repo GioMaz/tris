@@ -30,14 +30,37 @@ namespace tris
             int i = 0;
             while (!Trovato && i < ListaFigli.Count)
             {
-                NodoTrovato = ListaFigli[i].CercaConfigurazione(unaConfigurazione);
-                if (!NodoTrovato.Equals(new Nodo()))
+                if (HaTutteCelleInComune(unaConfigurazione))
                 {
-                    Trovato = true;
+                    NodoTrovato = ListaFigli[i].CercaConfigurazione(unaConfigurazione);
+                    if (!NodoTrovato.Equals(new Nodo()))
+                    {
+                        Trovato = true;
+                    }
                 }
                 i ++;
             }
             return NodoTrovato;
+        }
+
+        public bool HaTutteCelleInComune(int[,] unaConfigurazione)
+        {
+            bool Diverso = false;
+            int i = 0;
+            int j = 0;
+            while (!Diverso && i < Configurazione.GetLength(0))
+            {
+                while (!Diverso && j < Configurazione.GetLength(1))
+                {
+                    if (this.Configurazione[i, j] != 0 && this.Configurazione[i, j] != unaConfigurazione[i, j])
+                    {
+                        Diverso = true;
+                    }
+                    j++;
+                }
+                i++;
+            }
+            return !Diverso;
         }
 
         // override del metodo equals

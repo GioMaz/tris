@@ -1,0 +1,16 @@
+/home/giovanni/tris/bin/Debug/net5.0/tris
+/home/giovanni/tris/bin/Debug/net5.0/tris.deps.json
+/home/giovanni/tris/bin/Debug/net5.0/tris.runtimeconfig.json
+/home/giovanni/tris/bin/Debug/net5.0/tris.runtimeconfig.dev.json
+/home/giovanni/tris/bin/Debug/net5.0/tris.dll
+/home/giovanni/tris/bin/Debug/net5.0/ref/tris.dll
+/home/giovanni/tris/bin/Debug/net5.0/tris.pdb
+/home/giovanni/tris/obj/Debug/net5.0/tris.csprojAssemblyReference.cache
+/home/giovanni/tris/obj/Debug/net5.0/tris.GeneratedMSBuildEditorConfig.editorconfig
+/home/giovanni/tris/obj/Debug/net5.0/tris.AssemblyInfoInputs.cache
+/home/giovanni/tris/obj/Debug/net5.0/tris.AssemblyInfo.cs
+/home/giovanni/tris/obj/Debug/net5.0/tris.csproj.CoreCompileInputs.cache
+/home/giovanni/tris/obj/Debug/net5.0/tris.dll
+/home/giovanni/tris/obj/Debug/net5.0/ref/tris.dll
+/home/giovanni/tris/obj/Debug/net5.0/tris.pdb
+/home/giovanni/tris/obj/Debug/net5.0/tris.genruntimeconfig.cache
