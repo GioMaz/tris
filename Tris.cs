@@ -123,7 +123,7 @@ namespace tris
         {
             int[,] Tabella = Cronologia[Cronologia.Count - 1];
             int vincitore = 0;
-            for (int i = 0; i <= Tabella.GetLength(0) - 1; i++)
+            for (int i = 0; i < Tabella.GetLength(0); i++)
             {
                 bool ori  = true;
                 bool ver = true;
@@ -133,7 +133,7 @@ namespace tris
                 int giocatoreOri = Tabella[i, 0];
                 int giocatoreDia1 = Tabella[0, 0];
                 int giocatoreDia2 = Tabella[0, Tabella.GetLength(1) - 1];
-                for (int j = 0; j <= Tabella.GetLength(1) - 1; j++)
+                for (int j = 0; j < Tabella.GetLength(1); j++)
                 {
                     if (Tabella[i, j] != giocatoreOri || Tabella[i, j] == 0)
                     {
