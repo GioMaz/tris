@@ -92,15 +92,17 @@ namespace tris
         // true se un figlio ha la configurazione specificata nell'argomento
         public bool IsFiglio(int[,] conf)
         {
-            bool IsFiglio = false;
-            foreach (Nodo n in ListaFigli)
+            bool Trovato = false;
+            int i = 0;
+            while (!Trovato && i < ListaFigli.Count)
             {
-                if (n.Equals(new Nodo() {Punteggio = n.Punteggio, Configurazione = conf}))
+                if (ListaFigli[i].Equals(new Nodo() {Punteggio = ListaFigli[i].Punteggio, Configurazione = conf}))
                 {
-                    IsFiglio = true;
+                    Trovato = true;
                 }
+                i ++;
             }
-            return IsFiglio;
+            return Trovato;
         }
 
         // salva figli in un file binario

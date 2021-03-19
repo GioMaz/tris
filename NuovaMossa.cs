@@ -11,29 +11,27 @@ namespace tris
         public int Giocatore { get; set; }
         public Nodo NodoSimile;
 
-        public int[,] DimmiConfigurazioneVincente(Nodo Radice)
+        public int[,] DimmiConfigurazione(Nodo Radice)
         {
             NodoSimile = Radice.CercaConfigurazione(Configurazione);
             if (NodoSimile.Equals(new Nodo()))
             {
                 Console.WriteLine("NON TROVATO");
-                return DimmiFiglioRandom(Giocatore).Configurazione;
+                return FiglioRandom(Giocatore).Configurazione;
             }
-            Nodo NodoVincente = DimmiFiglioVincente(true);
+            Nodo NodoVincente = FiglioVincente(true);
             if (NodoVincente.Equals(new Nodo()))
             {
-                NodoVincente = DimmiFiglioRandom(Giocatore);
+                NodoVincente = FiglioRandom(Giocatore);
             }
             if (NodoVincente.Equals(new Nodo()))
             {
-                NodoVincente = DimmiFiglioVincente(false);
+                NodoVincente = FiglioVincente(false);
             }
             return NodoVincente.Configurazione;
         }
 
-        // ***
-        // public Nodo DimmiFiglioRandom(int giocatore, bool diversoDaFigli)
-        public Nodo DimmiFiglioRandom(int giocatore) // SERVE PER DIVERSIFICARE L'APPRENDIMENTO
+        public Nodo FiglioRandom(int giocatore) // SERVE PER DIVERSIFICARE L'APPRENDIMENTO
         {
             List<int[,]> ConfigurazioniPossibili = new List<int[,]>();
             for (int i = 0; i < Configurazione.Length; i++)
@@ -42,17 +40,10 @@ namespace tris
                 if (NuovaConfigurazione[i/3, i%3] == 0)
                 {
                     NuovaConfigurazione[i/3, i%3] = giocatore;
-                    // ***
-                    // if (diversoDaFigli && !IsFiglio(NuovaConfigurazione))
                     if (!NodoSimile.IsFiglio(NuovaConfigurazione))
                     {
                         ConfigurazioniPossibili.Add(NuovaConfigurazione);
                     }
-                    // ***
-                    // else if (!diversoDaFigli)
-                    // {
-                    //     ConfigurazioniPossibili.Add(NuovaConfigurazione);
-                    // }
                 }
             }
             if (ConfigurazioniPossibili.Count != 0)
@@ -68,7 +59,7 @@ namespace tris
         }
 
         // ritorna nodo figlio con punteggio più alto
-        public Nodo DimmiFiglioVincente(bool maggioreDiZero)
+        public Nodo FiglioVincente(bool maggioreDiZero)
         {
             Nodo NodoVincente = new Nodo();
             foreach (Nodo n in NodoSimile.ListaFigli)

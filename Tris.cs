@@ -39,8 +39,8 @@ namespace tris
         {
             int [,] Tabella = Cronologia[Cronologia.Count - 1];
             
-            NuovaMossa FiglioMigliore = new NuovaMossa {Configurazione = Tabella, Giocatore = giocatore};
-            int[,] NuovaConfigurazione = FiglioMigliore.DimmiConfigurazioneVincente(radice).Clone() as int[,];
+            NuovaMossa n = new NuovaMossa {Configurazione = Tabella, Giocatore = giocatore};
+            int[,] NuovaConfigurazione = n.DimmiConfigurazione(radice).Clone() as int[,];
             Cronologia.Add(NuovaConfigurazione);
             PrintTabella(Cronologia[Cronologia.Count - 1]);
         }
@@ -114,19 +114,19 @@ namespace tris
                         dia2 = false;
                     }
                 }
-                if (ori == true)
+                if (ori)
                 {
                     vincitore = giocatoreOri;
                 }
-                else if (ver == true)
+                else if (ver)
                 {
                     vincitore = giocatoreVer;
                 }
-                else if (dia1 == true)
+                else if (dia1)
                 {
                     vincitore = giocatoreDia1;
                 }
-                else if (dia2 == true)
+                else if (dia2)
                 {
                     vincitore = giocatoreDia2;
                 }
