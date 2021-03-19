@@ -26,9 +26,7 @@ namespace tris
                         GiaSommato.Add(Cronologia[j]);
                         Nodo NodoFiglio = new Nodo() {Configurazione = Cronologia[j], Punteggio = DimmiPunteggio(0)};
                         NodoPadre.AggiungiFiglio(NodoFiglio);
-                        // NodoPadre = NodoFiglio;
-                        // Molto molto lento
-                        NodoPadre = radice.CercaConfigurazione(NodoFiglio.Configurazione);
+                        NodoPadre = radice.CercaConfigurazione(NodoFiglio.Configurazione); // Molto molto lento
                     }
                     else
                     {
@@ -37,13 +35,11 @@ namespace tris
                             NodoSimile.Punteggio = DimmiPunteggio(NodoSimile.Punteggio);
                             GiaSommato.Add(NodoSimile.Configurazione);
                         }
-                        // NodoPadre = NodoSimile;
-                        // Molto molto lento
-                        NodoPadre = radice.CercaConfigurazione(NodoSimile.Configurazione);
+                        NodoPadre = radice.CercaConfigurazione(NodoSimile.Configurazione); // Molto molto lento
                     }
                 }
                 RuotaCronologia();
-                if (i == 3) // non so se è giusto
+                if (i == 3)
                 {
                     SpecchiaCronologia();
                 }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace tris
@@ -21,6 +20,7 @@ namespace tris
             {
                 radice.CaricaFigli();
             }
+
             while (true)
             {
                 tris = new Tris();

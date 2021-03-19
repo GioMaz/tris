@@ -18,10 +18,9 @@ namespace tris
 
         public void GiocaPartita(Nodo radice)
         {
-            int Turno = 0;
+            int giocatore = 1;
             while (DimmiVincitore() == 0)
             {
-                int giocatore = Turno%2 + 1;
                 if (giocatore == 1)
                 {
                     MossaGiocatore(radice, giocatore);
@@ -30,7 +29,7 @@ namespace tris
                 {
                     MossaIntelligente(radice, giocatore);
                 }
-                Turno ++;
+                giocatore = (1 - (giocatore-1) + 1);
             }
             Console.Write("VINCITORE: ");
             Console.WriteLine(DimmiVincitore());
@@ -39,48 +38,11 @@ namespace tris
         public void MossaIntelligente(Nodo radice, int giocatore)
         {
             int [,] Tabella = Cronologia[Cronologia.Count - 1];
-            Nodo ConfigurazioneSimile = radice.CercaConfigurazione(Tabella);
-            if (!ConfigurazioneSimile.Equals(new Nodo()))
-            {
-                // PRINTA FIGLI DISPONIBILI 
-                // (tenere per trovare eventuali errori nella creazione dell'albero)
-                // UTILE A SCOPO DI DEBUG
-                ConfigurazioneSimile.PrintFigli();
-
-                Nodo FiglioMigliore = ConfigurazioneSimile.DimmiConfigurazioneVincente(giocatore);
-                Console.Write("PUNTEGGIO: ");
-                Console.WriteLine(FiglioMigliore.Punteggio);
-                int[,] NuovaConfigurazione = FiglioMigliore.Configurazione.Clone() as int[,];
-                Cronologia.Add(NuovaConfigurazione);
-                PrintTabella(Cronologia[Cronologia.Count - 1]);
-            }
-            else
-            {
-                Console.WriteLine("NON TROVATO");
-                MossaRandom(giocatore);
-            }
-        }
-
-        public void MossaRandom(int giocatore) // NEL CASO NON SI CONOSCA LA CONFIGURAZIONE ATTUALE
-        {
-            List<int[,]> MossePossibili = new List<int[,]>();
-            int [,] Tabella = Cronologia[Cronologia.Count - 1];
-            for (int i = 0; i < Tabella.Length; i++)
-            {
-                int[,] NuovaMossa = Tabella.Clone() as int[,];
-                if (NuovaMossa[i/3, i%3] == 0)
-                {
-                    NuovaMossa[i/3, i%3] = giocatore;
-                    MossePossibili.Add(NuovaMossa);
-                }
-            }
-            if (MossePossibili.Count != 0)
-            {
-                Random Rand = new Random();
-                int NRand = Rand.Next(0, MossePossibili.Count);
-                Cronologia.Add(MossePossibili[NRand]);
-                PrintTabella(MossePossibili[NRand]);
-            }
+            
+            NuovaMossa FiglioMigliore = new NuovaMossa {Configurazione = Tabella, Giocatore = giocatore};
+            int[,] NuovaConfigurazione = FiglioMigliore.DimmiConfigurazioneVincente(radice).Clone() as int[,];
+            Cronologia.Add(NuovaConfigurazione);
+            PrintTabella(Cronologia[Cronologia.Count - 1]);
         }
 
         public void MossaGiocatore(Nodo radice, int giocatore)

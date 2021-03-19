@@ -89,82 +89,6 @@ namespace tris
             return tuttoUguale && this.Punteggio == altroNodo.Punteggio;
         }
 
-        // ritorna nodo con configurazione mossa preferibile data quella attuale
-        public Nodo DimmiConfigurazioneVincente(int giocatore)
-        {
-            Nodo NodoVincente = DimmiFiglioVincente(true);
-            if (NodoVincente.Equals(new Nodo()))
-            {
-                // ***
-                // NodoVincente = DimmiFiglioRandom(giocatore, true);
-                NodoVincente = DimmiFiglioRandom(giocatore);
-            }
-            if (NodoVincente.Equals(new Nodo()))
-            {
-                NodoVincente = DimmiFiglioVincente(false);
-            }
-            // ***
-            // if (NodoVincente.Equals(new Nodo()))
-            // {
-            //     NodoVincente = DimmiFiglioRandom(giocatore, false);
-            // }
-            return NodoVincente;
-        }
-
-        // ***
-        // public Nodo DimmiFiglioRandom(int giocatore, bool diversoDaFigli)
-        public Nodo DimmiFiglioRandom(int giocatore) // SERVE PER DIVERSIFICARE L'APPRENDIMENTO
-        {
-            List<int[,]> ConfigurazioniPossibili = new List<int[,]>();
-            for (int i = 0; i < Configurazione.Length; i++)
-            {
-                int[,] NuovaConfigurazione = Configurazione.Clone() as int[,];
-                if (NuovaConfigurazione[i/3, i%3] == 0)
-                {
-                    NuovaConfigurazione[i/3, i%3] = giocatore;
-                    // ***
-                    // if (diversoDaFigli && !IsFiglio(NuovaConfigurazione))
-                    if (!IsFiglio(NuovaConfigurazione))
-                    {
-                        ConfigurazioniPossibili.Add(NuovaConfigurazione);
-                    }
-                    // ***
-                    // else if (!diversoDaFigli)
-                    // {
-                    //     ConfigurazioniPossibili.Add(NuovaConfigurazione);
-                    // }
-                }
-            }
-            if (ConfigurazioniPossibili.Count != 0)
-            {
-                Random Rand = new Random();
-                int NRand = Rand.Next(0, ConfigurazioniPossibili.Count);
-                return new Nodo() {Configurazione = ConfigurazioniPossibili[NRand]};
-            }
-            else
-            {
-                return new Nodo();
-            }
-        }
-
-        // ritorna nodo figlio con punteggio più alto
-        public Nodo DimmiFiglioVincente(bool maggioreDiZero)
-        {
-            Nodo NodoVincente = new Nodo();
-            foreach (Nodo n in ListaFigli)
-            {
-                if (maggioreDiZero && n.Punteggio >= 0 && (n.Punteggio > NodoVincente.Punteggio || NodoVincente.Punteggio == null))
-                {
-                    NodoVincente = new Nodo() {Punteggio = n.Punteggio, Configurazione = n.Configurazione.Clone() as int[,]};
-                }
-                else if (!maggioreDiZero && (n.Punteggio > NodoVincente.Punteggio || NodoVincente.Punteggio == null))
-                {
-                    NodoVincente = new Nodo() {Punteggio = n.Punteggio, Configurazione = n.Configurazione.Clone() as int[,]};
-                }
-            }
-            return NodoVincente;
-        }
-
         // true se un figlio ha la configurazione specificata nell'argomento
         public bool IsFiglio(int[,] conf)
         {
@@ -177,23 +101,6 @@ namespace tris
                 }
             }
             return IsFiglio;
-        }
-
-        // ritorna il numero di 0 (caselle non specificate) nella configurazione attuale
-        public int DimmiMosseDisponibili()
-        {
-            int MosseDisponibili = 0;
-            for (int i = 0; i < Configurazione.GetLength(0); i++)
-            {
-                for (int j = 0; j < Configurazione.GetLength(1); j++)
-                {
-                    if (Configurazione[i, j] == 0)
-                    {
-                        MosseDisponibili ++;
-                    }
-                }
-            }
-            return MosseDisponibili;
         }
 
         // salva figli in un file binario
