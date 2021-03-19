@@ -105,6 +105,35 @@ namespace tris
             return Trovato;
         }
 
+        public bool HaFigliVincenti()
+        {
+            bool HaVincenti= false;
+            int i = 0;
+            while (!HaVincenti && i < ListaFigli.Count)
+            {
+                // List<int[,]> NuovaCronologia = new List<int[,]> {};
+                if (ListaFigli[i].Punteggio >= 0)
+                {
+                    HaVincenti = true;
+                }
+                i ++;
+            }
+            return HaVincenti;
+        }
+
+        public bool HaTuttiRami()
+        {
+            int zeroCount = 0;
+            foreach (int n in Configurazione)
+            {
+                if (n == 0)
+                {
+                    zeroCount ++;
+                }
+            }
+            return ListaFigli.Count == zeroCount;
+        }
+
         // salva figli in un file binario
         public void SalvaFigli()
         {

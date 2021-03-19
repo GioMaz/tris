@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace tris
 {
@@ -17,12 +15,23 @@ namespace tris
             if (NodoSimile.Equals(new Nodo()))
             {
                 Console.WriteLine("NON TROVATO");
-                return FiglioRandom(Giocatore).Configurazione;
+                return FiglioRandom().Configurazione;
             }
+
+            // SISTEMARE QUI
+            // if (NodoSimile.HaFigliVincenti())
+            // {
+            //     return FiglioVincente(true).Configurazione;
+            // }
+            // else if (NodoSimile.)
+            // {
+            //     return FiglioRandom().Configurazione;
+            // }
+
             Nodo NodoVincente = FiglioVincente(true);
             if (NodoVincente.Equals(new Nodo()))
             {
-                NodoVincente = FiglioRandom(Giocatore);
+                NodoVincente = FiglioRandom();
             }
             if (NodoVincente.Equals(new Nodo()))
             {
@@ -31,7 +40,7 @@ namespace tris
             return NodoVincente.Configurazione;
         }
 
-        public Nodo FiglioRandom(int giocatore) // SERVE PER DIVERSIFICARE L'APPRENDIMENTO
+        public Nodo FiglioRandom() // SERVE PER DIVERSIFICARE L'APPRENDIMENTO
         {
             List<int[,]> ConfigurazioniPossibili = new List<int[,]>();
             for (int i = 0; i < Configurazione.Length; i++)
@@ -39,7 +48,7 @@ namespace tris
                 int[,] NuovaConfigurazione = Configurazione.Clone() as int[,];
                 if (NuovaConfigurazione[i/3, i%3] == 0)
                 {
-                    NuovaConfigurazione[i/3, i%3] = giocatore;
+                    NuovaConfigurazione[i/3, i%3] = Giocatore;
                     if (!NodoSimile.IsFiglio(NuovaConfigurazione))
                     {
                         ConfigurazioniPossibili.Add(NuovaConfigurazione);

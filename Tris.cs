@@ -87,10 +87,8 @@ namespace tris
             int vincitore = 0;
             for (int i = 0; i < Tabella.GetLength(0); i++)
             {
-                bool ori  = true;
-                bool ver = true;
-                bool dia1 = true;
-                bool dia2 = true;
+                bool ori, ver, dia1, dia2;
+                ori = ver = dia1 = dia2 = true;
                 int giocatoreVer = Tabella[0, i];
                 int giocatoreOri = Tabella[i, 0];
                 int giocatoreDia1 = Tabella[0, 0];
@@ -130,6 +128,10 @@ namespace tris
                 {
                     vincitore = giocatoreDia2;
                 }
+                // else
+                // {
+                //     vincitore = -1;
+                // }
             }
             bool tuttePiene = true;
             for (int i = 0; i <= Tabella.GetLength(0) - 1; i++)
