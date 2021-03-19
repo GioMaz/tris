@@ -134,16 +134,30 @@ namespace tris
                 // }
             }
             bool tuttePiene = true;
-            for (int i = 0; i <= Tabella.GetLength(0) - 1; i++)
+            int k = 0;
+            while (tuttePiene && k < Tabella.GetLength(0))
             {
-                for (int j = 0; j <= Tabella.GetLength(1) - 1; j++)
+                int l = 0;
+                while (tuttePiene && l < Tabella.GetLength(1))
                 {
-                    if (Tabella[i,j] == 0)
+                    if (Tabella[k, l] == 0)
                     {
                         tuttePiene = false;
                     }
+                    l++;
                 }
+                k++;
             }
+            // for (int i = 0; i < Tabella.GetLength(0); i++)
+            // {
+            //     for (int j = 0; j < Tabella.GetLength(1); j++)
+            //     {
+            //         if (Tabella[i,j] == 0)
+            //         {
+            //             tuttePiene = false;
+            //         }
+            //     }
+            // }
             if (tuttePiene && vincitore == 0)
             {
                 return -1;
