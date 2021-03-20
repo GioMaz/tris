@@ -18,26 +18,32 @@ namespace tris
                 return FiglioRandom().Configurazione;
             }
 
-            // SISTEMARE QUI
-            // if (NodoSimile.HaFigliVincenti())
-            // {
-            //     return FiglioVincente(true).Configurazione;
-            // }
-            // else if (NodoSimile.)
-            // {
-            //     return FiglioRandom().Configurazione;
-            // }
+            // NUOVO
+            if (NodoSimile.HaFigliVincenti())
+            {
+                return FiglioVincente(true).Configurazione;
+            }
+            else if (!NodoSimile.HaTuttiRami())
+            {
+                // Console.WriteLine("FiglioRandom Diverso");
+                return FiglioRandom().Configurazione;
+            }
+            else
+            {
+                return FiglioVincente(false).Configurazione;
+            }
 
-            Nodo NodoVincente = FiglioVincente(true);
-            if (NodoVincente.Equals(new Nodo()))
-            {
-                NodoVincente = FiglioRandom();
-            }
-            if (NodoVincente.Equals(new Nodo()))
-            {
-                NodoVincente = FiglioVincente(false);
-            }
-            return NodoVincente.Configurazione;
+            // VECCHIO
+            // Nodo NodoVincente = FiglioVincente(true);
+            // if (NodoVincente.Equals(new Nodo()))
+            // {
+            //     NodoVincente = FiglioRandom();
+            // }
+            // if (NodoVincente.Equals(new Nodo()))
+            // {
+            //     NodoVincente = FiglioVincente(false);
+            // }
+            // return NodoVincente.Configurazione;
         }
 
         public Nodo FiglioRandom() // SERVE PER DIVERSIFICARE L'APPRENDIMENTO
@@ -68,6 +74,8 @@ namespace tris
         }
 
         // ritorna nodo figlio con punteggio più alto
+        // maggioreDiZero == true -> n.Punteggio >= 0
+        // maggioreDiZero == false -> n.Punteggio > (tutti altri n.Punteggio)
         public Nodo FiglioVincente(bool maggioreDiZero)
         {
             Nodo NodoVincente = new Nodo();

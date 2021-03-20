@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "/home/giovanni/.nuget/packages/": {}
+    "/Users/giovanni/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/giovanni/tris/tris.csproj",
+      "projectUniqueName": "/Users/giovanni/Desktop/Bandiera/tris/tris.csproj",
       "projectName": "tris",
-      "projectPath": "/home/giovanni/tris/tris.csproj",
-      "packagesPath": "/home/giovanni/.nuget/packages/",
-      "outputPath": "/home/giovanni/tris/obj/",
+      "projectPath": "/Users/giovanni/Desktop/Bandiera/tris/tris.csproj",
+      "packagesPath": "/Users/giovanni/.nuget/packages/",
+      "outputPath": "/Users/giovanni/Desktop/Bandiera/tris/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/giovanni/.nuget/NuGet/NuGet.Config"
+        "/Users/giovanni/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -53,18 +53,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.104/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/Cellar/dotnet/5.0.103/libexec/sdk/5.0.103/RuntimeIdentifierGraph.json"
       }
     }
   }
