@@ -92,7 +92,7 @@ namespace tris
             Cronologia = NuovaCronologia;
         }
 
-        public int? DimmiPunteggio(int? vecchioPunteggio)
+        public int DimmiPunteggio(int vecchioPunteggio)
         {
             int n = Cronologia.Count;
             // se è vinta, poche mosse è meglio

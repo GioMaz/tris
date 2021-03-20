@@ -17,11 +17,13 @@ namespace tris
                 Console.WriteLine("NON TROVATO");
                 return FiglioRandom().Configurazione;
             }
+            NodoSimile.PrintFigli();
 
             // NUOVO
             if (NodoSimile.HaFigliVincenti())
             {
-                return FiglioVincente(true).Configurazione;
+                // return FiglioVincente(true).Configurazione;
+                return FiglioVincente().Configurazione;
             }
             else if (!NodoSimile.HaTuttiRami())
             {
@@ -30,7 +32,8 @@ namespace tris
             }
             else
             {
-                return FiglioVincente(false).Configurazione;
+                // return FiglioVincente(false).Configurazione;
+                return FiglioMigliore().Configurazione;
             }
 
             // VECCHIO
@@ -76,21 +79,48 @@ namespace tris
         // ritorna nodo figlio con punteggio più alto
         // maggioreDiZero == true -> n.Punteggio >= 0
         // maggioreDiZero == false -> n.Punteggio > (tutti altri n.Punteggio)
-        public Nodo FiglioVincente(bool maggioreDiZero)
+
+        // public Nodo FiglioVincente(bool maggioreDiZero)
+        // {
+        //     Nodo NodoVincente = new Nodo();
+        //     foreach (Nodo n in NodoSimile.ListaFigli)
+        //     {
+        //         if (maggioreDiZero && n.Punteggio >= 0 && (n.Punteggio > NodoVincente.Punteggio || NodoVincente.Punteggio == null))
+        //         {
+        //             NodoVincente = new Nodo() {Punteggio = n.Punteggio, Configurazione = n.Configurazione.Clone() as int[,]};
+        //         }
+        //         else if (!maggioreDiZero && (n.Punteggio > NodoVincente.Punteggio || NodoVincente.Punteggio == null))
+        //         {
+        //             NodoVincente = new Nodo() {Punteggio = n.Punteggio, Configurazione = n.Configurazione.Clone() as int[,]};
+        //         }
+        //     }
+        //     return NodoVincente;
+        // }
+
+        public Nodo FiglioVincente()
         {
-            Nodo NodoVincente = new Nodo();
+            Nodo Vincente = new Nodo();
             foreach (Nodo n in NodoSimile.ListaFigli)
             {
-                if (maggioreDiZero && n.Punteggio >= 0 && (n.Punteggio > NodoVincente.Punteggio || NodoVincente.Punteggio == null))
+                if (Vincente.Equals(new Nodo()) || n.Punteggio >= 0)
                 {
-                    NodoVincente = new Nodo() {Punteggio = n.Punteggio, Configurazione = n.Configurazione.Clone() as int[,]};
-                }
-                else if (!maggioreDiZero && (n.Punteggio > NodoVincente.Punteggio || NodoVincente.Punteggio == null))
-                {
-                    NodoVincente = new Nodo() {Punteggio = n.Punteggio, Configurazione = n.Configurazione.Clone() as int[,]};
+                    Vincente = n;
                 }
             }
-            return NodoVincente;
+            return Vincente;
+        }
+
+        public Nodo FiglioMigliore()
+        {
+            Nodo Migliore = new Nodo();
+            foreach (Nodo n in NodoSimile.ListaFigli)
+            {
+                if (Migliore.Equals(new Nodo()) || n.Punteggio > Migliore.Punteggio)
+                {
+                     Migliore = n;
+                }
+            }
+            return Migliore;
         }
     }
 }

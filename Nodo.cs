@@ -8,7 +8,8 @@ namespace tris
     [Serializable]
     public class Nodo
     {
-        public int? Punteggio { get; set; } = null;
+        // public int? Punteggio { get; set; } = null;
+        public int Punteggio { get; set; }
         public int[,] Configurazione { get; set; }
         public List<Nodo> ListaFigli = new List<Nodo>();
 
@@ -67,11 +68,20 @@ namespace tris
         public override bool Equals(object n)
         {
             Nodo altroNodo = n as Nodo;
-            if (this.Configurazione == null && altroNodo.Configurazione == null && this.Punteggio == null && altroNodo.Punteggio == null)
+            // if (this.Configurazione == null && altroNodo.Configurazione == null && this.Punteggio == null && altroNodo.Punteggio == null)
+            // {
+            //     return true;
+            // }
+            // else if (this.Configurazione == null || altroNodo.Configurazione == null || this.Punteggio == null || altroNodo.Punteggio == null)
+            // {
+            //     return false;
+            // }
+
+            if (this.Configurazione == null && altroNodo.Configurazione == null)
             {
                 return true;
             }
-            else if (this.Configurazione == null || altroNodo.Configurazione == null || this.Punteggio == null || altroNodo.Punteggio == null)
+            else if (this.Configurazione == null || altroNodo.Configurazione == null)
             {
                 return false;
             }
