@@ -76,7 +76,6 @@ namespace tris
             // {
             //     return false;
             // }
-
             if (this.Configurazione == null && altroNodo.Configurazione == null)
             {
                 return true;
@@ -133,15 +132,15 @@ namespace tris
 
         public bool HaTuttiRami()
         {
-            int zeroCount = 0;
+            int ZeroCount = 0;
             foreach (int n in Configurazione)
             {
                 if (n == 0)
                 {
-                    zeroCount ++;
+                    ZeroCount ++;
                 }
             }
-            return ListaFigli.Count == zeroCount;
+            return ListaFigli.Count == ZeroCount;
         }
 
         // salva figli in un file binario

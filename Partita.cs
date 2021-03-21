@@ -7,17 +7,20 @@ namespace tris
     {
         public int Vincitore { get; set; }
         public List<int[,]> Cronologia { get; set; }
+
         // aggiunge cronologia a nodo (radice)
         // ruota le configurazioni per imparare più in fretta
         public void AggiungiTutteCronologie(Nodo radice)
         {
             List<int[,]> GiaSommato = new List<int[,]>();
-            // specchia cronologia
-            // ruota cronologia
-            for (int i = 0; i < 8; i++) // 4
+            for (int i = 0; i < 8; i++) // specchia e ruota cronologia
             {
+                if (i == 4)
+                {
+                    SpecchiaCronologia();
+                }
                 Nodo NodoPadre = radice;
-                for (int j = 1; j < Cronologia.Count; j++)
+                for (int j = 1; j < Cronologia.Count; j++) // per ogni conf a partire dalla seconda
                 {
                     Nodo NodoSimile = NodoPadre.CercaConfigurazione(Cronologia[j]);
                     
@@ -39,10 +42,6 @@ namespace tris
                     }
                 }
                 RuotaCronologia();
-                if (i == 3)
-                {
-                    SpecchiaCronologia();
-                }
             }
         }
 
