@@ -114,13 +114,13 @@ namespace tris
             return Trovato;
         }
 
+        // controlla se ha figli con punteggio >= 0
         public bool HaFigliVincenti()
         {
             bool HaVincenti= false;
             int i = 0;
             while (!HaVincenti && i < ListaFigli.Count)
             {
-                // List<int[,]> NuovaCronologia = new List<int[,]> {};
                 if (ListaFigli[i].Punteggio >= 0)
                 {
                     HaVincenti = true;
@@ -130,6 +130,8 @@ namespace tris
             return HaVincenti;
         }
 
+        // controlla se tutte le mosse possibili (ListaFigli)
+        // sono state già eseguite
         public bool HaTuttiRami()
         {
             int ZeroCount = 0;

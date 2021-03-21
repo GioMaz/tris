@@ -31,34 +31,3 @@ namespace tris
         }
     }
 }
-
-// class Nodo
-// n.Punteggio                          => int
-// n.Configurazione                     => int[,]
-// n.ListaFigli                         => List<Nodo>
-// 
-// n.AggiungiFiglio(Nodo);
-// n.CercaConfigurazione(int[,]);       => Nodo
-// n.Equals(object as Nodo) (override)  => bool
-// n.PrintConfigurazione(int[,]);
-// n.PrintAlbero();
-
-
-// class Partita
-// p.Vincitore                          => int
-// p.Cronologia                         => List<int[,]>
-// 
-// p.AggiungiTutteCronologie
-// p.AggiungiCronologia
-// p.RuotaCronologia
-
-
-// class Tris
-// t.Tabella;                           => int[,]
-// t.CronologiaMosse;                   => List<int[,]>
-// 
-// t.GiocaPartita();
-// t.DimmiVincitore();                  => int
-// t.PassaAPartita();                   => Partita
-// t.PrintTabella(int[,]);
-// t.PrintCronologia();

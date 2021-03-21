@@ -17,22 +17,21 @@ namespace tris
                 Console.WriteLine("NON TROVATO");
                 return FiglioRandom().Configurazione;
             }
-            NodoSimile.PrintFigli();
 
             // NUOVO
-            if (NodoSimile.HaFigliVincenti())
+            else if (NodoSimile.HaFigliVincenti())
             {
-                // return FiglioVincente(true).Configurazione;
+                NodoSimile.PrintFigli();
                 return FiglioVincente().Configurazione;
             }
             else if (!NodoSimile.HaTuttiRami())
             {
-                // Console.WriteLine("FiglioRandom Diverso");
+                NodoSimile.PrintFigli();
                 return FiglioRandom().Configurazione;
             }
             else
             {
-                // return FiglioVincente(false).Configurazione;
+                NodoSimile.PrintFigli();
                 return FiglioMigliore().Configurazione;
             }
 
