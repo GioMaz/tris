@@ -26,7 +26,7 @@ namespace tris
             {
                 return this;
             }
-            Nodo NodoTrovato = new Nodo();
+            Nodo NodoTrovato = null;
             bool Trovato = false;
             int i = 0;
             while (!Trovato && i < ListaFigli.Count)
@@ -34,7 +34,7 @@ namespace tris
                 if (HaTutteCelleInComune(unaConfigurazione))
                 {
                     NodoTrovato = ListaFigli[i].CercaConfigurazione(unaConfigurazione);
-                    if (!NodoTrovato.Equals(new Nodo()))
+                    if (NodoTrovato != null)
                     {
                         Trovato = true;
                     }
@@ -68,22 +68,22 @@ namespace tris
         public override bool Equals(object n)
         {
             Nodo altroNodo = n as Nodo;
-            // if (this.Configurazione == null && altroNodo.Configurazione == null && this.Punteggio == null && altroNodo.Punteggio == null)
+            // // if (this.Configurazione == null && altroNodo.Configurazione == null && this.Punteggio == null && altroNodo.Punteggio == null)
+            // // {
+            // //     return true;
+            // // }
+            // // else if (this.Configurazione == null || altroNodo.Configurazione == null || this.Punteggio == null || altroNodo.Punteggio == null)
+            // // {
+            // //     return false;
+            // // }
+            // if (this.Configurazione == null && altroNodo.Configurazione == null)
             // {
             //     return true;
             // }
-            // else if (this.Configurazione == null || altroNodo.Configurazione == null || this.Punteggio == null || altroNodo.Punteggio == null)
+            // else if (this.Configurazione == null || altroNodo.Configurazione == null)
             // {
             //     return false;
             // }
-            if (this.Configurazione == null && altroNodo.Configurazione == null)
-            {
-                return true;
-            }
-            else if (this.Configurazione == null || altroNodo.Configurazione == null)
-            {
-                return false;
-            }
             bool tuttoUguale = true;
             int i = 0;
             while (tuttoUguale && i < Configurazione.GetLength(0))

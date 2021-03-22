@@ -12,6 +12,7 @@ namespace tris
         // ruota le configurazioni per imparare più in fretta
         public void AggiungiTutteCronologie(Nodo radice)
         {
+            Console.WriteLine();
             List<int[,]> GiaSommato = new List<int[,]>();
             for (int i = 0; i < 8; i++) // specchia e ruota cronologia
             {
@@ -24,7 +25,8 @@ namespace tris
                 {
                     Nodo NodoSimile = NodoPadre.CercaConfigurazione(Cronologia[j]);
                     
-                    if (NodoSimile.Equals(new Nodo()))
+                    // if (NodoSimile.Equals(new Nodo()))
+                    if (NodoSimile == null)
                     {
                         GiaSommato.Add(Cronologia[j]);
                         Nodo NodoFiglio = new Nodo() {Configurazione = Cronologia[j], Punteggio = DimmiPunteggio(0)};

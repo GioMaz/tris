@@ -12,7 +12,7 @@ namespace tris
         public int[,] DimmiConfigurazione(Nodo Radice)
         {
             NodoSimile = Radice.CercaConfigurazione(Configurazione);
-            if (NodoSimile.Equals(new Nodo()))
+            if (NodoSimile == null)
             {
                 Console.WriteLine("NON TROVATO");
                 return FiglioRandom().Configurazione;
@@ -57,7 +57,7 @@ namespace tris
                 if (NuovaConfigurazione[i/3, i%3] == 0)
                 {
                     NuovaConfigurazione[i/3, i%3] = Giocatore;
-                    if (!NodoSimile.IsFiglio(NuovaConfigurazione))
+                    if (NodoSimile == null || !NodoSimile.IsFiglio(NuovaConfigurazione))
                     {
                         ConfigurazioniPossibili.Add(NuovaConfigurazione);
                     }
@@ -71,7 +71,7 @@ namespace tris
             }
             else
             {
-                return new Nodo();
+                return null;
             }
         }
 
@@ -98,10 +98,10 @@ namespace tris
 
         public Nodo FiglioVincente()
         {
-            Nodo Vincente = new Nodo();
+            Nodo Vincente = null;
             foreach (Nodo n in NodoSimile.ListaFigli)
             {
-                if (Vincente.Equals(new Nodo()) || n.Punteggio >= 0)
+                if (Vincente == null || n.Punteggio >= 0)
                 {
                     Vincente = n;
                 }
@@ -111,10 +111,10 @@ namespace tris
 
         public Nodo FiglioMigliore()
         {
-            Nodo Migliore = new Nodo();
+            Nodo Migliore = null;
             foreach (Nodo n in NodoSimile.ListaFigli)
             {
-                if (Migliore.Equals(new Nodo()) || n.Punteggio > Migliore.Punteggio)
+                if (Migliore == null || n.Punteggio > Migliore.Punteggio)
                 {
                      Migliore = n;
                 }

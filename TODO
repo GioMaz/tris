@@ -1,3 +1,4 @@
 - togliere radice.CercaConfigurazione() e NodoPadre.CercaConfigurazione() da Partita.cs
   utilizzare invece NodoPadre = 'Nodo'
-- override metodo Equals() con ciclo while invece di for
+V override metodo Equals() con ciclo while invece di for
+- utilizzare libreria Linq e null invece di new Nodo()
