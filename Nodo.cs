@@ -46,22 +46,22 @@ namespace tris
 
         public bool HaTutteCelleInComune(int[,] unaConfigurazione)
         {
-            bool Diverso = false;
+            bool tuttoUguale = true;
             int i = 0;
-            int j = 0;
-            while (!Diverso && i < Configurazione.GetLength(0))
+            while (tuttoUguale && i < Configurazione.GetLength(0))
             {
-                while (!Diverso && j < Configurazione.GetLength(1))
+                int j = 0;
+                while (tuttoUguale && j < Configurazione.GetLength(1))
                 {
                     if (this.Configurazione[i, j] != 0 && this.Configurazione[i, j] != unaConfigurazione[i, j])
                     {
-                        Diverso = true;
+                        tuttoUguale = false;
                     }
                     j++;
                 }
                 i++;
             }
-            return !Diverso;
+            return tuttoUguale;
         }
 
         // override del metodo equals
@@ -85,15 +85,19 @@ namespace tris
                 return false;
             }
             bool tuttoUguale = true;
-            for (int i = 0; i < Configurazione.GetLength(0); i++)
+            int i = 0;
+            while (tuttoUguale && i < Configurazione.GetLength(0))
             {
-                for (int j = 0; j < Configurazione.GetLength(1); j++)
+                int j = 0;
+                while (tuttoUguale && j < Configurazione.GetLength(1))
                 {
                     if (Configurazione[i, j] != altroNodo.Configurazione[i, j])
                     {
                         tuttoUguale = false;
                     }
+                    j++;
                 }
+                i++;
             }
             return tuttoUguale && this.Punteggio == altroNodo.Punteggio;
         }
