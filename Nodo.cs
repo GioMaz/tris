@@ -22,7 +22,8 @@ namespace tris
         // partendo dal nodo corrente
         public Nodo CercaConfigurazione(int[,] unaConfigurazione)
         {
-            if (this.Equals(new Nodo() {Punteggio = this.Punteggio, Configurazione = unaConfigurazione}))
+            // if (this.Equals(new Nodo() {Punteggio = this.Punteggio, Configurazione = unaConfigurazione}))
+            if (this.Equals(new Nodo() {Configurazione = unaConfigurazione}))
             {
                 return this;
             }
@@ -99,7 +100,8 @@ namespace tris
                 }
                 i++;
             }
-            return tuttoUguale && this.Punteggio == altroNodo.Punteggio;
+            // return tuttoUguale && this.Punteggio == altroNodo.Punteggio;
+            return tuttoUguale;
         }
 
         // true se un figlio ha la configurazione specificata nell'argomento
@@ -109,7 +111,8 @@ namespace tris
             int i = 0;
             while (!Trovato && i < ListaFigli.Count)
             {
-                if (ListaFigli[i].Equals(new Nodo() {Punteggio = ListaFigli[i].Punteggio, Configurazione = conf}))
+                if (ListaFigli[i].Equals(new Nodo() {Configurazione = conf}))
+                // if (ListaFigli[i].Equals(new Nodo() {Punteggio = ListaFigli[i].Punteggio, Configurazione = conf}))
                 {
                     Trovato = true;
                 }
