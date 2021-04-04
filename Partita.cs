@@ -10,7 +10,7 @@ namespace tris
 
         // aggiunge cronologia a nodo (radice)
         // ruota le configurazioni per imparare più in fretta
-        public void AggiungiTutteCronologie(Nodo radice)
+        public void PassaARadice(Nodo radice)
         {
             Console.WriteLine();
             List<int[,]> GiaSommato = new List<int[,]>();

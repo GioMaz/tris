@@ -25,7 +25,7 @@ namespace tris
             {
                 tris = new Tris();
                 tris.GiocaPartita(radice);
-                tris.PassaAPartita().AggiungiTutteCronologie(radice);
+                tris.PassaAPartita().PassaARadice(radice);
                 Console.WriteLine("INIZIO NUOVA PARTITA\n");
             }
         }
