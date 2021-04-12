@@ -37,9 +37,9 @@ namespace tris
 
         public void MossaIntelligente(Nodo radice, int giocatore)
         {
-            int [,] Tabella = Cronologia[Cronologia.Count - 1];
+            int [,] tabella = Cronologia[Cronologia.Count - 1];
             
-            NuovaMossa n = new NuovaMossa {Configurazione = Tabella, Giocatore = giocatore};
+            NuovaMossa n = new NuovaMossa {Configurazione = tabella, Giocatore = giocatore};
             int[,] NuovaConf = n.DimmiConfigurazione(radice).Clone() as int[,];
             Cronologia.Add(NuovaConf);
             PrintTabella(Cronologia[Cronologia.Count - 1]);
@@ -47,7 +47,7 @@ namespace tris
 
         public void MossaGiocatore(Nodo radice, int giocatore)
         {
-            int [,] Tabella = Cronologia[Cronologia.Count - 1];
+            int [,] tabella = Cronologia[Cronologia.Count - 1];
             bool Trovato = false;
             while (!Trovato)
             {
@@ -59,9 +59,9 @@ namespace tris
                     radice.SalvaFigli();
                 }
                 int NScelto = Convert.ToInt32(SScelto) - 1;
-                if (NScelto < 9 && -1 < NScelto && Tabella[NScelto/3, NScelto%3] == 0)
+                if (NScelto < 9 && -1 < NScelto && tabella[NScelto/3, NScelto%3] == 0)
                 {
-                    int[,] NuovaConfigurazione = Tabella.Clone() as int[,];
+                    int[,] NuovaConfigurazione = tabella.Clone() as int[,];
                     NuovaConfigurazione[NScelto/3, NScelto%3] = giocatore;
                     Cronologia.Add(NuovaConfigurazione);
                     Trovato = true;
@@ -83,31 +83,31 @@ namespace tris
         // ritorna 0 se la partita è ancora in corso
         public int DimmiVincitore()
         {
-            int[,] Tabella = Cronologia[Cronologia.Count - 1];
+            int[,] tabella = Cronologia[Cronologia.Count - 1];
             int vincitore = 0;
-            for (int i = 0; i < Tabella.GetLength(0); i++)
+            for (int i = 0; i < tabella.GetLength(0); i++)
             {
                 bool ori, ver, dia1, dia2;
                 ori = ver = dia1 = dia2 = true;
-                int giocatoreVer = Tabella[0, i];
-                int giocatoreOri = Tabella[i, 0];
-                int giocatoreDia1 = Tabella[0, 0];
-                int giocatoreDia2 = Tabella[0, Tabella.GetLength(1) - 1];
-                for (int j = 0; j < Tabella.GetLength(1); j++)
+                int giocatoreVer = tabella[0, i];
+                int giocatoreOri = tabella[i, 0];
+                int giocatoreDia1 = tabella[0, 0];
+                int giocatoreDia2 = tabella[0, tabella.GetLength(1) - 1];
+                for (int j = 0; j < tabella.GetLength(1); j++)
                 {
-                    if (Tabella[i, j] != giocatoreOri || Tabella[i, j] == 0)
+                    if (tabella[i, j] != giocatoreOri || tabella[i, j] == 0)
                     {
                         ori = false;
                     }
-                    if (Tabella[j, i] != giocatoreVer || Tabella[j, i] == 0)
+                    if (tabella[j, i] != giocatoreVer || tabella[j, i] == 0)
                     {
                         ver = false;
                     }
-                    if (Tabella[j, j] != giocatoreDia1 || Tabella[j, j] == 0)
+                    if (tabella[j, j] != giocatoreDia1 || tabella[j, j] == 0)
                     {
                         dia1 = false;
                     }
-                    if (Tabella[j, Tabella.GetLength(0) - 1 - j] != giocatoreDia2 || Tabella[j, Tabella.GetLength(0) - 1 - j] == 0)
+                    if (tabella[j, tabella.GetLength(0) - 1 - j] != giocatoreDia2 || tabella[j, tabella.GetLength(0) - 1 - j] == 0)
                     {
                         dia2 = false;
                     }
@@ -128,19 +128,15 @@ namespace tris
                 {
                     vincitore = giocatoreDia2;
                 }
-                // else
-                // {
-                //     vincitore = -1;
-                // }
             }
             bool tuttePiene = true;
             int k = 0;
-            while (tuttePiene && k < Tabella.GetLength(0))
+            while (tuttePiene && k < tabella.GetLength(0))
             {
                 int l = 0;
-                while (tuttePiene && l < Tabella.GetLength(1))
+                while (tuttePiene && l < tabella.GetLength(1))
                 {
-                    if (Tabella[k, l] == 0)
+                    if (tabella[k, l] == 0)
                     {
                         tuttePiene = false;
                     }
@@ -148,16 +144,6 @@ namespace tris
                 }
                 k++;
             }
-            // for (int i = 0; i < Tabella.GetLength(0); i++)
-            // {
-            //     for (int j = 0; j < Tabella.GetLength(1); j++)
-            //     {
-            //         if (Tabella[i,j] == 0)
-            //         {
-            //             tuttePiene = false;
-            //         }
-            //     }
-            // }
             if (tuttePiene && vincitore == 0)
             {
                 return -1;

@@ -13,7 +13,7 @@ namespace tris
         public void PassaARadice(Nodo radice)
         {
             Console.WriteLine();
-            List<int[,]> GiaSommato = new List<int[,]>();
+            List<int[,]> giaSommati = new List<int[,]>();
             for (int i = 0; i < 8; i++) // specchia e ruota cronologia
             {
                 if (i == 4)
@@ -28,17 +28,17 @@ namespace tris
                     // if (NodoSimile.Equals(new Nodo()))
                     if (NodoSimile == null)
                     {
-                        GiaSommato.Add(Cronologia[j]);
+                        giaSommati.Add(Cronologia[j]);
                         Nodo NodoFiglio = new Nodo() {Configurazione = Cronologia[j], Punteggio = DimmiPunteggio(0)};
                         NodoPadre.AggiungiFiglio(NodoFiglio);
                         NodoPadre = radice.CercaConfigurazione(NodoFiglio.Configurazione); // Molto molto lento
                     }
                     else
                     {
-                        if (!GiaSommato.Contains(NodoSimile.Configurazione))
+                        if (!giaSommati.Contains(NodoSimile.Configurazione))
                         {
                             NodoSimile.Punteggio = DimmiPunteggio(NodoSimile.Punteggio);
-                            GiaSommato.Add(NodoSimile.Configurazione);
+                            giaSommati.Add(NodoSimile.Configurazione);
                         }
                         NodoPadre = radice.CercaConfigurazione(NodoSimile.Configurazione); // Molto molto lento
                     }
@@ -50,7 +50,7 @@ namespace tris
         // ruota tutte le configurazioni nella cronologia
         public void RuotaCronologia()
         {
-            List<int[,]> NuovaCronologia = new List<int[,]> {};
+            List<int[,]> nuovaCronologia = new List<int[,]> {};
             foreach (int[,] m in Cronologia)
             {
                 int [,] NuovaMatrice = new int[,] {
@@ -65,15 +65,15 @@ namespace tris
                         NuovaMatrice[i, j] = m[m.GetLength(0) - 1 - j, i];
                     }
                 }
-                NuovaCronologia.Add(NuovaMatrice);
+                nuovaCronologia.Add(NuovaMatrice);
             }
-            Cronologia = NuovaCronologia;
+            Cronologia = nuovaCronologia;
         }
 
         // specchia tutte le configurazioni nella cronologia
         public void SpecchiaCronologia()
         {
-            List<int[,]> NuovaCronologia = new List<int[,]> {};
+            List<int[,]> nuovaCronologia = new List<int[,]> {};
             foreach (int[,] m in Cronologia)
             {
                 int [,] NuovaMatrice = new int[,] {
@@ -88,9 +88,9 @@ namespace tris
                         NuovaMatrice[i, j] = m[i, m.GetLength(0) - 1 - j];
                     }
                 }
-                NuovaCronologia.Add(NuovaMatrice);
+                nuovaCronologia.Add(NuovaMatrice);
             }
-            Cronologia = NuovaCronologia;
+            Cronologia = nuovaCronologia;
         }
 
         public int DimmiPunteggio(int vecchioPunteggio)

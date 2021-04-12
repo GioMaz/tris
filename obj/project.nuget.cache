@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Qv6QhW/rldyDzqLgN8W7mwTRyWdVkXPZQZG/l3npUe0ZNb5n6o98tIuXeVJyiVLJlRhXV2UlhqR7FU1cJQ+JhQ==",
+  "dgSpecHash": "mccrcFYAfL6+aRsj2XmFWnnnY3upOqGDFa7Mf8eJmguM73wEfD2JPB1K0cV3fUO22ZP5FwdH9dhBMLkr2uf8Kg==",
   "success": true,
-  "projectFilePath": "/home/giovanni/Desktop/tris/tris.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/giovanni/Code/C#/tris/tris.csproj",
+  "expectedPackageFiles": [
+    "/home/giovanni/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

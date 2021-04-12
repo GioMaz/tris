@@ -27,22 +27,22 @@ namespace tris
             {
                 return this;
             }
-            Nodo NodoTrovato = null;
-            bool Trovato = false;
+            Nodo nodoTrovato = null;
+            bool trovato = false;
             int i = 0;
-            while (!Trovato && i < ListaFigli.Count)
+            while (!trovato && i < ListaFigli.Count)
             {
                 if (HaTutteCelleInComune(unaConfigurazione))
                 {
-                    NodoTrovato = ListaFigli[i].CercaConfigurazione(unaConfigurazione);
-                    if (NodoTrovato != null)
+                    nodoTrovato = ListaFigli[i].CercaConfigurazione(unaConfigurazione);
+                    if (nodoTrovato != null)
                     {
-                        Trovato = true;
+                        trovato = true;
                     }
                 }
                 i ++;
             }
-            return NodoTrovato;
+            return nodoTrovato;
         }
 
         public bool HaTutteCelleInComune(int[,] unaConfigurazione)
@@ -69,22 +69,6 @@ namespace tris
         public override bool Equals(object n)
         {
             Nodo altroNodo = n as Nodo;
-            // // if (this.Configurazione == null && altroNodo.Configurazione == null && this.Punteggio == null && altroNodo.Punteggio == null)
-            // // {
-            // //     return true;
-            // // }
-            // // else if (this.Configurazione == null || altroNodo.Configurazione == null || this.Punteggio == null || altroNodo.Punteggio == null)
-            // // {
-            // //     return false;
-            // // }
-            // if (this.Configurazione == null && altroNodo.Configurazione == null)
-            // {
-            //     return true;
-            // }
-            // else if (this.Configurazione == null || altroNodo.Configurazione == null)
-            // {
-            //     return false;
-            // }
             bool tuttoUguale = true;
             int i = 0;
             while (tuttoUguale && i < Configurazione.GetLength(0))
@@ -107,49 +91,49 @@ namespace tris
         // true se un figlio ha la configurazione specificata nell'argomento
         public bool IsFiglio(int[,] conf)
         {
-            bool Trovato = false;
+            bool trovato = false;
             int i = 0;
-            while (!Trovato && i < ListaFigli.Count)
+            while (!trovato && i < ListaFigli.Count)
             {
                 if (ListaFigli[i].Equals(new Nodo() {Configurazione = conf}))
                 // if (ListaFigli[i].Equals(new Nodo() {Punteggio = ListaFigli[i].Punteggio, Configurazione = conf}))
                 {
-                    Trovato = true;
+                    trovato = true;
                 }
                 i ++;
             }
-            return Trovato;
+            return trovato;
         }
 
         // controlla se ha figli con punteggio >= 0
         public bool HaFigliVincenti()
         {
-            bool HaVincenti= false;
+            bool haVincenti= false;
             int i = 0;
-            while (!HaVincenti && i < ListaFigli.Count)
+            while (!haVincenti && i < ListaFigli.Count)
             {
                 if (ListaFigli[i].Punteggio >= 0)
                 {
-                    HaVincenti = true;
+                    haVincenti = true;
                 }
                 i ++;
             }
-            return HaVincenti;
+            return haVincenti;
         }
 
         // controlla se tutte le mosse possibili (ListaFigli)
         // sono state già eseguite
         public bool HaTuttiRami()
         {
-            int ZeroCount = 0;
+            int zeroCount = 0;
             foreach (int n in Configurazione)
             {
                 if (n == 0)
                 {
-                    ZeroCount ++;
+                    zeroCount ++;
                 }
             }
-            return ListaFigli.Count == ZeroCount;
+            return ListaFigli.Count == zeroCount;
         }
 
         // salva figli in un file binario
