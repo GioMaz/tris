@@ -34,7 +34,8 @@ namespace tris
             {
                 if (HaTutteCelleInComune(unaConfigurazione))
                 {
-                    nodoTrovato = ListaFigli[i].CercaConfigurazione(unaConfigurazione);
+                    nodoTrovato =
+                        ListaFigli[i].CercaConfigurazione(unaConfigurazione);
                     if (nodoTrovato != null)
                     {
                         trovato = true;
@@ -49,12 +50,15 @@ namespace tris
         {
             bool tuttoUguale = true;
             int i = 0;
-            while (tuttoUguale && i < Configurazione.GetLength(0))
+            while (tuttoUguale &&
+                    i < Configurazione.GetLength(0))
             {
                 int j = 0;
-                while (tuttoUguale && j < Configurazione.GetLength(1))
+                while (tuttoUguale &&
+                        j < Configurazione.GetLength(1))
                 {
-                    if (this.Configurazione[i, j] != 0 && this.Configurazione[i, j] != unaConfigurazione[i, j])
+                    if (this.Configurazione[i, j] != 0 &&
+                            this.Configurazione[i, j] != unaConfigurazione[i, j])
                     {
                         tuttoUguale = false;
                     }
@@ -76,7 +80,8 @@ namespace tris
                 int j = 0;
                 while (tuttoUguale && j < Configurazione.GetLength(1))
                 {
-                    if (Configurazione[i, j] != altroNodo.Configurazione[i, j])
+                    if (Configurazione[i, j] !=
+                            altroNodo.Configurazione[i, j])
                     {
                         tuttoUguale = false;
                     }
@@ -96,7 +101,8 @@ namespace tris
             while (!trovato && i < ListaFigli.Count)
             {
                 if (ListaFigli[i].Equals(new Nodo() {Configurazione = conf}))
-                // if (ListaFigli[i].Equals(new Nodo() {Punteggio = ListaFigli[i].Punteggio, Configurazione = conf}))
+                // if (ListaFigli[i].Equals(new Nodo()
+                    // {Punteggio = ListaFigli[i].Punteggio, Configurazione = conf}))
                 {
                     trovato = true;
                 }

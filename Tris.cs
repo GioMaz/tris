@@ -39,7 +39,9 @@ namespace tris
         {
             int [,] tabella = Cronologia[Cronologia.Count - 1];
             
-            NuovaMossa n = new NuovaMossa {Configurazione = tabella, Giocatore = giocatore};
+            NuovaMossa n = new NuovaMossa
+            {Configurazione = tabella, Giocatore = giocatore};
+
             int[,] NuovaConf = n.DimmiConfigurazione(radice).Clone() as int[,];
             Cronologia.Add(NuovaConf);
             PrintTabella(Cronologia[Cronologia.Count - 1]);
@@ -59,7 +61,8 @@ namespace tris
                     radice.SalvaFigli();
                 }
                 int NScelto = Convert.ToInt32(SScelto) - 1;
-                if (NScelto < 9 && -1 < NScelto && tabella[NScelto/3, NScelto%3] == 0)
+                if (NScelto < 9 && -1 < NScelto &&
+                        tabella[NScelto/3, NScelto%3] == 0)
                 {
                     int[,] NuovaConfigurazione = tabella.Clone() as int[,];
                     NuovaConfigurazione[NScelto/3, NScelto%3] = giocatore;
@@ -72,7 +75,8 @@ namespace tris
 
         public Partita PassaAPartita()
         {
-            return new Partita() {Vincitore = DimmiVincitore(), Cronologia = Cronologia};
+            return new Partita()
+            {Vincitore = DimmiVincitore(), Cronologia = Cronologia};
         }
 
         // serve a stabilire chi ha vinto
@@ -107,7 +111,9 @@ namespace tris
                     {
                         dia1 = false;
                     }
-                    if (tabella[j, tabella.GetLength(0) - 1 - j] != giocatoreDia2 || tabella[j, tabella.GetLength(0) - 1 - j] == 0)
+                    if (tabella[j, tabella.GetLength(0) - 1 - j] != 
+                            giocatoreDia2 || 
+                            tabella[j, tabella.GetLength(0) - 1 - j] == 0)
                     {
                         dia2 = false;
                     }

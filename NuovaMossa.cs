@@ -45,7 +45,8 @@ namespace tris
                 if (NuovaConfigurazione[i/3, i%3] == 0)
                 {
                     NuovaConfigurazione[i/3, i%3] = Giocatore;
-                    if (NodoSimile == null || !NodoSimile.IsFiglio(NuovaConfigurazione))
+                    if (NodoSimile == null ||
+                            !NodoSimile.IsFiglio(NuovaConfigurazione))
                     {
                         configurazioniPossibili.Add(NuovaConfigurazione);
                     }
@@ -55,7 +56,8 @@ namespace tris
             {
                 Random Rand = new Random();
                 int NRand = Rand.Next(0, configurazioniPossibili.Count);
-                return new Nodo() {Configurazione = configurazioniPossibili[NRand]};
+                return new Nodo()
+                {Configurazione = configurazioniPossibili[NRand]};
             }
             else
             {

@@ -7,7 +7,8 @@ namespace tris
     { 
         public static void Main(string[] args)
         {
-            Nodo radice = new Nodo() {Punteggio = 0, Configurazione = new int[,] {
+            Nodo radice = new Nodo()
+            {Punteggio = 0, Configurazione = new int[,] {
                 {0,0,0},
                 {0,0,0},
                 {0,0,0}
