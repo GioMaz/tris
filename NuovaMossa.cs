@@ -57,7 +57,9 @@ namespace tris
                 Random Rand = new Random();
                 int NRand = Rand.Next(0, configurazioniPossibili.Count);
                 return new Nodo()
-                {Configurazione = configurazioniPossibili[NRand]};
+                {
+                    Configurazione = configurazioniPossibili[NRand]
+                };
             }
             else
             {

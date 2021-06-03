@@ -58,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/Cellar/dotnet/5.0.104/libexec/sdk/5.0.104/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/Cellar/dotnet/5.0.203/libexec/sdk/5.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }

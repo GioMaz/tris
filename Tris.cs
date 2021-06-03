@@ -40,8 +40,10 @@ namespace tris
             int [,] tabella = Cronologia[Cronologia.Count - 1];
             
             NuovaMossa n = new NuovaMossa
-            {Configurazione = tabella, Giocatore = giocatore};
-
+            {
+                Configurazione = tabella,
+                Giocatore = giocatore
+            };
             int[,] NuovaConf = n.DimmiConfigurazione(radice).Clone() as int[,];
             Cronologia.Add(NuovaConf);
             PrintTabella(Cronologia[Cronologia.Count - 1]);
