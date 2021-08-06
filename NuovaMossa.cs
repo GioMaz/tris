@@ -18,7 +18,6 @@ namespace tris
                 return FiglioRandom().Configurazione;
             }
 
-            // NUOVO
             else if (NodoSimile.HaFigliVincenti())
             {
                 NodoSimile.PrintFigli();
